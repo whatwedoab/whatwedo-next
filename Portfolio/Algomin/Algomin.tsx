@@ -6,6 +6,11 @@ import { Tags } from '../../components/Tags/Tags'
 import { ParallaxImages } from '../../components/ParallaxImages/ParallaxImages'
 import { motion, Variants } from 'framer-motion'
 import { Image } from '../../components/Image/Image'
+import { useBackgroundColor } from '../../services/useBackgroundColor'
+import { useInView } from 'react-intersection-observer'
+import { useColor } from '../../services/useColor'
+import { useActiveNav } from '../../services/useActiveNav'
+import { COLOR } from '../../styles/COLOR'
 
 const parallaxImages = [
   {
@@ -25,6 +30,10 @@ const mosaicHrefs = Array.from(new Array(6)).map(
 export default function Algomin() {
   const { height } = useWindowSize()
   const [mockupLoaded, setMockupLoaded] = useState<boolean>(false)
+  const { ref, inView } = useInView()
+  useBackgroundColor(COLOR.WHITE, inView)
+  useColor(COLOR.BLACK, inView)
+  useActiveNav('/portfolio', inView)
 
   const nameVariants: Variants = {
     hidden: { opacity: 0, y: -25 },
@@ -39,6 +48,7 @@ export default function Algomin() {
   return (
     <>
       <motion.div
+        ref={ref}
         className={s.backgroundMockup}
         initial="hidden"
         animate={mockupLoaded ? 'visible' : 'hidden'}
@@ -56,8 +66,8 @@ export default function Algomin() {
         />
       </motion.div>
 
-      <section className={s.section}>
-        <motion.div
+      <article className={s.article}>
+        <motion.section
           className={s.nameContainer}
           initial="hidden"
           animate={mockupLoaded ? 'visible' : 'hidden'}
@@ -72,17 +82,21 @@ export default function Algomin() {
           >
             <h1>Algomin</h1>
           </a>
-        </motion.div>
+        </motion.section>
 
-        <Tags containerClassName={s.tagsContainer} delay={1.5} tags={['web design', 'responsive']} />
+        <Tags
+          containerClassName={s.tagsContainer}
+          delay={1.5}
+          tags={['web design', 'responsive']}
+        />
 
         {!!height && <ParallaxImages images={parallaxImages} />}
 
-        <div className={s.contentContainer}>
+        <section className={s.contentContainer}>
           <ImageMosaic hrefs={mosaicHrefs} columns={3} />
-        </div>
+        </section>
 
-        <div className={s.contentContainer}>
+        <section className={s.contentContainer}>
           <h3>The job</h3>
           <p>
             Algomin is a leading, environment friendly producer of soil
@@ -108,8 +122,8 @@ export default function Algomin() {
               https://www.algomin.se
             </a>
           </p>
-        </div>
-      </section>
+        </section>
+      </article>
     </>
   )
 }

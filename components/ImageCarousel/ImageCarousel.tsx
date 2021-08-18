@@ -29,7 +29,7 @@ export function ImageCarousel(props: Props) {
           layout="fill"
           objectFit="cover"
           priority
-          className={i === showIndex ? s.visible : s.hidden}
+          className={i !== showIndex ? s.hidden : ''}
           containerStyle={{ display: 'hidden' }}
         />
       ))}

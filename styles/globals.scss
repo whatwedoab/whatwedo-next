@@ -1,19 +1,22 @@
 @import './font';
+@import './layout';
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: orpheuspro, neue-haas-grotesk-display, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  scroll-behavior: smooth;
+  @include bodyFont();
+  @include bodyLayout();
 }
 
 main {
-  width: 100%;
-  min-height: 100vh;
-  padding-bottom: 3rem;
+  @include mainLayout();
+}
+
+article {
+  @include articleLayout();
 }
 
 a {
@@ -22,36 +25,22 @@ a {
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
 h1 {
-  font-size: 4.5rem;
-  line-height: 1;
+  @include h1Font();
 }
 
 h2 {
-  font-size: 4.5rem;
-  line-height: 1;
+  @include h2Font();
 }
 
 h3 {
-  font-size: 3rem;
-  line-height: 1;
-  @include biko();
+  @include h3Font();
 }
 
 h4 {
-  text-transform: uppercase;
-  @include biko();
-  padding-bottom: 0;
-  margin-bottom: 0;
-  font-size: 0.85rem;
-  font-weight: 900;
+  @include h4Font();
 }
 
 p {
-  margin-top: 0.25rem;
-  margin-bottom: 2rem;
+  @include pLayout();
 }

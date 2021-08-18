@@ -1,57 +1,59 @@
 import React, { useEffect } from 'react'
 import s from './Home.module.scss'
 import { ImageCarousel } from '../components/ImageCarousel/ImageCarousel'
-import { useTheme } from '../services/ThemeContext'
-import { useNavState } from '../components/Nav/NavStateContext'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import { Logo } from '../components/Logo/Logo'
-import { SlideIn } from '../components/SlideIn/SlideIn'
 import Link from 'next/link'
+import { Logo } from '../components/Logo/Logo'
+import { useScrollIn } from '../services/useScrollIn'
+import { useBackgroundColor } from '../services/useBackgroundColor'
+import { useColor } from '../services/useColor'
+import { useActiveNav } from '../services/useActiveNav'
+import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
+import { COLOR } from '../styles/COLOR'
+import { useShowLogo } from '../services/useShowLogo'
+import { useShowNav } from '../services/useShowNav'
 
 export function Home() {
-  const { ref, inView } = useInView({ threshold: 0.2 })
-  const { setShowLogo, setShowNav } = useTheme(
-    { backgroundColor: '#B1F2FC', color: '#000' },
-    inView,
-  )
-  useNavState('/', inView)
+  const { ref, inView, entry } = useInView(PAGE_IN_VIEW_OPTIONS)
+  useBackgroundColor(COLOR.BLUE_LIGHT, inView)
+  useColor(COLOR.BLACK, inView)
+  useActiveNav('/', inView)
+  useScrollIn(inView, entry)
+  const { showLogo } = useShowLogo(false)
+  const { showNav } = useShowNav(false)
 
   useEffect(() => {
-    setTimeout(() => setShowLogo(true), 3000)
-    setTimeout(() => {
-      setShowNav(true)
-    }, 2000)
-  }, [setShowLogo, setShowNav])
+    setTimeout(() => showLogo(true), 3000)
+    setTimeout(() => showNav(true), 2000)
+  }, [])
 
   return (
     <>
-      <motion.div
-        className={s.logoContainer}
-        initial={{ opacity: 1 }}
-        animate={{
-          opacity: 0,
-        }}
-        transition={{ delay: 1 }}
+      <motion.article
+        key="Home"
+        ref={ref}
+        className={s.article}
+        initial={{ scale: 1 }}
       >
-        <Logo style={{ fill: '#FF7276' }} />
-      </motion.div>
-      <div className={s.container} ref={ref}>
-        <h1 className={s.h1}>
-          <SlideIn height={'14vmin'} delay={2}>
-            Hi 👋
-          </SlideIn>
-          <SlideIn height={'21vmin'} delay={3}>
-            I&apos;m a digital developer and designer.
-          </SlideIn>
-          <SlideIn height={'21vmin'} delay={4}>
-            Feel free to read more <Link href="/about">about</Link> me, browse
-            some of my <Link href="/portfolio">work</Link> or{' '}
-            <Link href="/contact">get in touch</Link>.
-          </SlideIn>
-        </h1>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { delay: 2 } }}
+          transition={{ ease: 'anticipate' }}
+          className={s.h1}
+        >
+          Hi!
+          <br />
+          <br />
+          I&apos;m a coder and designer that creates digital things.
+          <br />
+          <br />
+          Feel free to browse some of my <Link href="/portfolio">work</Link>,
+          read more <Link href="/about">about me</Link> or{' '}
+          <Link href="/contact">get in touch</Link>.
+        </motion.h1>
 
-        <motion.div
+        <motion.section
           className={s.carouselContainer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -67,8 +69,18 @@ export function Home() {
               '/assets/culinary-canvas-computers.jpg',
             ]}
           />
-        </motion.div>
-      </div>
+        </motion.section>
+      </motion.article>
+      <motion.div
+        className={s.logoContainer}
+        initial={{ opacity: 1 }}
+        animate={{
+          opacity: 0,
+        }}
+        transition={{ delay: 1 }}
+      >
+        <Logo style={{ fill: COLOR.CORAL }} />
+      </motion.div>
     </>
   )
 }

@@ -2,10 +2,10 @@ import React from 'react'
 import s from './Nav.module.scss'
 import { AnimateSharedLayout, motion } from 'framer-motion'
 import { NavButton } from './NavButton/NavButton'
-import { useTheme } from '../../services/ThemeContext'
+import { useShowNav } from '../../services/useShowNav'
 
 export function Nav() {
-  const { showNav } = useTheme()
+  const { navVisible } = useShowNav()
 
   const variants = {
     hidden: {
@@ -21,13 +21,14 @@ export function Nav() {
       <motion.nav
         className={s.nav}
         initial="hidden"
-        animate={showNav ? 'visible' : 'hidden'}
+        animate={navVisible ? 'visible' : 'hidden'}
         variants={variants}
         transition={{ duration: 1, ease: 'anticipate' }}
       >
+        <NavButton label="Start" href="/" />
         <NavButton label="Portfolio" href="/portfolio" />
-        <NavButton label="About" href="/about" />
         <NavButton label="Pricing" href="/pricing" />
+        <NavButton label="About" href="/about" />
         <NavButton label="Contact" href="/contact" />
       </motion.nav>
     </AnimateSharedLayout>

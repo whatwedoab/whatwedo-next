@@ -1,34 +1,45 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Nav } from '../components/Nav/Nav'
 import { Header } from '../components/Header/Header'
-import { ThemeContext, useThemeInit } from '../services/ThemeContext'
 import { AnimatePresence, motion } from 'framer-motion'
-import { NavStateProvider } from '../components/Nav/NavStateContext'
+import { useRouter } from 'next/router'
+import { AppContext, useAppContextInit } from '../services/App.context'
+import { COLOR } from '../styles/COLOR'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const theme = useThemeInit()
+  const router = useRouter()
+  const appContext = useAppContextInit({
+    backgroundColor: COLOR.WHITE,
+    color: COLOR.BLACK,
+    navVisible: false,
+    logoVisible: false,
+    activeNav: router.asPath,
+  })
+
+  useEffect(() => {
+    setTimeout(() => appContext.showLogo(true), 3000)
+    setTimeout(() => appContext.showNav(true), 2000)
+  }, [appContext])
 
   return (
-    <NavStateProvider>
-      <ThemeContext.Provider value={theme}>
-        <AnimatePresence>
-          <motion.div
-            className="page"
-            animate={{
-              backgroundColor: theme.backgroundColor,
-              color: theme.color,
-            }}
-            transition={{ duration: 1 }}
-          >
-            <Header />
-            <Nav />
-            <Component {...pageProps} />
-          </motion.div>
-        </AnimatePresence>
-      </ThemeContext.Provider>
-    </NavStateProvider>
+    <AppContext.Provider value={appContext}>
+      <AnimatePresence>
+        <motion.main
+          key={router.asPath}
+          animate={{
+            backgroundColor: appContext.backgroundColor,
+            color: appContext.color,
+          }}
+          transition={{ ease: 'anticipate' }}
+        >
+          <Header />
+          <Nav />
+          <Component {...pageProps} />
+        </motion.main>
+      </AnimatePresence>
+    </AppContext.Provider>
   )
 }
 export default MyApp

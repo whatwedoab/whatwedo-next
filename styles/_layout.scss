@@ -1,0 +1,32 @@
+$headerHeight: 100px;
+
+@mixin bodyLayout() {
+  margin: 0;
+}
+
+@mixin mainLayout() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+@mixin articleLayout() {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+  max-width: 1800px;
+  min-height: 100vh;
+  padding: 2rem;
+  margin: 0;
+  @media all and (max-width: 840px) {
+    width: 90vw;
+  }
+}
+
+@mixin pLayout() {
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
+}

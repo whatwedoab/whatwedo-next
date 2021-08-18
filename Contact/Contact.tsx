@@ -8,76 +8,85 @@ import DesignerCommunityDribbble from '@streamlinehq/streamlinehq/img/streamline
 import SocialMediaTwitter from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-twitter.svg'
 import DeveloperCommunityGithub1 from '@streamlinehq/streamlinehq/img/streamline-bold/logos/developer-communities/developer-community-github-1.svg'
 import { Image } from '../components/Image/Image'
-import { useTheme } from '../services/ThemeContext'
 import { useInView } from 'react-intersection-observer'
-import { useNavState } from '../components/Nav/NavStateContext'
+import { useScrollIn } from '../services/useScrollIn'
+import { useBackgroundColor } from '../services/useBackgroundColor'
+import { useColor } from '../services/useColor'
+import { useActiveNav } from '../services/useActiveNav'
+import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
+import { COLOR } from '../styles/COLOR'
 
 export function Contact() {
-  const { ref, inView } = useInView({ threshold: 0.2 })
-  useTheme({ backgroundColor: '#f2cfcf', color: '#000' }, inView)
-  useNavState('/contact', inView)
+  const { ref, inView, entry } = useInView(PAGE_IN_VIEW_OPTIONS)
+  useBackgroundColor(COLOR.PINK_LIGHT, inView)
+  useColor(COLOR.BLACK, inView)
+  useActiveNav('/contact', inView)
+  useScrollIn(inView, entry)
+
   return (
-    <section className={s.container} ref={ref}>
+    <article ref={ref}>
       <h2>Contact</h2>
-      <ul className={s.row}>
-        <li>
-          <Image
-            alt="Phone"
-            src={Phone}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <span className={s.detailText}>+46 (0) 739-596 096</span>
-        </li>
-        <li>
-          <Image
-            alt="Email"
-            src={Envelope}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <span className={s.detailText}>mikael@whatwedo.se</span>
-        </li>
-        <li>
-          <Image
-            alt="Instagram"
-            src={SocialInstagram}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <Image
-            alt="Facebook"
-            src={SocialMediaFacebook}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <Image
-            alt="Twitter"
-            src={SocialMediaTwitter}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <Image
-            alt="Dribbble"
-            src={DesignerCommunityDribbble}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-          <Image
-            alt="Github"
-            src={DeveloperCommunityGithub1}
-            width={50}
-            height={50}
-            className={s.icon}
-          />
-        </li>
-      </ul>
-    </section>
+      <section>
+        <ul className={s.row}>
+          <li>
+            <Image
+              alt="Phone"
+              src={Phone}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <span className={s.detailText}>+46 (0) 739-596 096</span>
+          </li>
+          <li>
+            <Image
+              alt="Email"
+              src={Envelope}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <span className={s.detailText}>mikael@whatwedo.se</span>
+          </li>
+          <li>
+            <Image
+              alt="Instagram"
+              src={SocialInstagram}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <Image
+              alt="Facebook"
+              src={SocialMediaFacebook}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <Image
+              alt="Twitter"
+              src={SocialMediaTwitter}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <Image
+              alt="Dribbble"
+              src={DesignerCommunityDribbble}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+            <Image
+              alt="Github"
+              src={DeveloperCommunityGithub1}
+              width={50}
+              height={50}
+              className={s.icon}
+            />
+          </li>
+        </ul>
+      </section>
+    </article>
   )
 }

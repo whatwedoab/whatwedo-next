@@ -1,8 +1,10 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80vw;
-  margin: 0 10vw;
+@import '../styles/layout';
+
+.article {
+  padding-bottom: 50vh;
+}
+
+.h1 {
+  top: $headerHeight;
+  z-index: 2;
 }

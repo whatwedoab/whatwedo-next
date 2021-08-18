@@ -1,13 +1,14 @@
 @import '../../styles/font';
+@import '../../styles/color';
 
-.container{
+.container {
   padding: 2rem;
 }
 
 .button {
   @include neue-display();
   padding: 0.5rem 1rem;
-  background-color: #fffd98;
+  background-color: $yellowLight;
   border: none;
   border-radius: 8px;
   color: rgba(21, 19, 37, 1) !important;
@@ -15,7 +16,7 @@
   font-size: 1rem;
   font-weight: 900;
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 }

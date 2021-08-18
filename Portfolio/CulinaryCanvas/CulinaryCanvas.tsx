@@ -6,7 +6,11 @@ import { Tags } from '../../components/Tags/Tags'
 import { ParallaxImages } from '../../components/ParallaxImages/ParallaxImages'
 import { motion, Variants } from 'framer-motion'
 import { Image } from '../../components/Image/Image'
-import { useTheme } from '../../services/ThemeContext'
+import { useInView } from 'react-intersection-observer'
+import { useBackgroundColor } from '../../services/useBackgroundColor'
+import { useColor } from '../../services/useColor'
+import { useActiveNav } from '../../services/useActiveNav'
+import { COLOR } from '../../styles/COLOR'
 
 const parallaxImages = [
   {
@@ -26,7 +30,10 @@ const mosaicHrefs = Array.from(new Array(12)).map(
 export default function CulinaryCanvas() {
   const { height } = useWindowSize()
   const [logoLoaded, setLogoLoaded] = useState<boolean>(false)
-  useTheme({backgroundColor: '#f2cfcf'})
+  const { ref, inView } = useInView()
+  useBackgroundColor(COLOR.CULINARY_CANVAS.PINK_LIGHT, inView)
+  useColor(COLOR.BLACK, inView)
+  useActiveNav('/portfolio', inView)
 
   const logoVariants: Variants = {
     hidden: { opacity: 0, y: 25 },
@@ -34,14 +41,14 @@ export default function CulinaryCanvas() {
   }
 
   return (
-    <section className={s.section}>
+    <article className={s.article} ref={ref}>
       <motion.div
         className={s.triangle}
         initial={{ y: '-100%' }}
         animate={{ y: 0 }}
         transition={{ type: 'tween', ease: 'linear' }}
       />
-      <motion.div
+      <motion.section
         className={s.logoContainer}
         initial="hidden"
         animate={logoLoaded ? 'visible' : 'hidden'}
@@ -63,7 +70,7 @@ export default function CulinaryCanvas() {
             onLoadingComplete={() => setLogoLoaded(true)}
           />
         </a>
-      </motion.div>
+      </motion.section>
 
       <Tags
         delay={1.5}
@@ -72,11 +79,11 @@ export default function CulinaryCanvas() {
 
       {!!height && <ParallaxImages images={parallaxImages} />}
 
-      <div className={s.contentContainer}>
+      <section className={s.contentContainer}>
         <ImageMosaic hrefs={mosaicHrefs} />
-      </div>
+      </section>
 
-      <div className={s.contentContainer}>
+      <section className={s.contentContainer}>
         <h3>The job</h3>
         <p>
           Culinary Canvas celebrates the creativity of culinary and beverage
@@ -126,7 +133,7 @@ export default function CulinaryCanvas() {
             https://culinary-canvas.com
           </a>
         </p>
-      </div>
-    </section>
+      </section>
+    </article>
   )
 }

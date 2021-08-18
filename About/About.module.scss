@@ -1,11 +1,68 @@
+@import '../styles/color';
 @import '../styles/font';
+@import '../styles/layout';
 
 .container {
+  @include articleLayout();
+}
+
+.sticky {
+  position: sticky;
+  top: $headerHeight;
+}
+
+.contentContainer {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 90vw;
-  min-height: 100vh;
-  margin-left: 10vw;
+
+  h3 {
+    padding-bottom: 0;
+    margin: 3rem 0 0.25rem;
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    &:first-child {
+      padding-right: 1rem;
+    }
+    &:last-child {
+      padding-left: 1rem;
+    }
+  }
+
+  .imageContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35vh;
+    height: 35vw;
+
+    .wwdLogo {
+      position: relative;
+      width: 70%;
+      height: 70%;
+      fill: $yellowLight;
+    }
+  }
+
+  .keyWordsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    text-transform: uppercase;
+    font-family: $biko;
+    font-size: 1.5rem;
+    gap: 1rem;
+  }
+
+  hr {
+    margin: 2rem;
+    border-color: white;
+    border-width: 2px;
+  }
 }

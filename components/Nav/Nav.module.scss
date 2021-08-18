@@ -1,11 +1,14 @@
+@import '../../styles/font';
+
 .nav {
   position: fixed;
+  top: 0;
   right: 1rem;
   display: flex;
-  align-items: center;
   z-index: 100;
+  align-items: center;
   height: 100px;
-  font-family: neue-haas-grotesk-display, sans-serif;
+  font-family: $neueDisplay;
 
   a {
     color: inherit;

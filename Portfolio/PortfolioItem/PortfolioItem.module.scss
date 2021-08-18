@@ -1,25 +1,47 @@
+@import '../../styles/layout';
+@import '../../styles/color';
+
 .container {
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 1fr;
   width: 100%;
-  padding: calc(100px + 1rem) 0 1rem;
-  overflow-x: hidden;
-  border: 2px solid red;
+  height: 40vh;
+  margin-bottom: 5rem;
+  cursor: pointer;
+  gap: 2rem;
+
   h3 {
-    margin: 0;
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    margin: 0.5rem 0;
   }
 }
+
 .imageContainer {
   position: relative;
-  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .imageWrapper {
+    width: 120%;
+    height: 120%;
+  }
+
+  .imageCover {
+    position: absolute;
+    z-index: 20;
+    width: 15vh;
+    height: 15vh;
+    background-color: #fff399;
+  }
 }
-.image {
-  justify-self: flex-end;
+
+.textContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  justify-content: flex-end;
+  height: 100%;
 }

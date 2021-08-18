@@ -1,14 +1,5 @@
 @import '../styles/font';
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 90vw;
-  min-height: 100vh;
-  margin-left: 10vw;
-}
+@import '../styles/layout';
 
 .row {
   padding: 0;
@@ -16,8 +7,8 @@
 
   li {
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    align-items: center;
     padding: 1rem 0;
   }
 

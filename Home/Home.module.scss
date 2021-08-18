@@ -1,26 +1,5 @@
 @import '../styles/font';
-
-$h1FontSize: 6vmin;
-
-.container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 90vw;
-  min-height: calc(100vh - 240px);
-  margin: 120px 10vw;
-}
-
-.h1 {
-  position: relative;
-  display: flex;
-  z-index: 20;
-  flex-direction: column;
-  width: 60vw;
-  margin: 0;
-  font-size: $h1FontSize;
-  line-height: 1.2;
-}
+@import '../styles/layout';
 
 .logoContainer {
   position: absolute;
@@ -30,8 +9,24 @@ $h1FontSize: 6vmin;
   height: 100vh;
 }
 
+.article {
+  flex-direction: row;
+  width: 100vw;
+}
+
+.h1 {
+  font-family: $neueDisplay;
+  position: relative;
+  z-index: 20;
+  width: 55vw;
+  padding-right: 2rem;
+  margin: 0;
+  font-size: 5vmin;
+  font-weight: 600;
+}
+
 .carouselContainer {
-  position: absolute;
+  position: relative;
   right: 0;
   width: 40vmax;
   height: 40vmax;

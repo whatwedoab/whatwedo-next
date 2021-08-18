@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import s from './NavButton.module.scss'
 import { animate, motion, useMotionValue } from 'framer-motion'
-import { useTheme } from '../../../services/ThemeContext'
-import { useNavState } from '../NavStateContext'
+import { useColor } from '../../../services/useColor'
+import { useActiveNav } from '../../../services/useActiveNav'
 
 interface Props {
   label: string
@@ -12,8 +12,8 @@ interface Props {
 
 export function NavButton(props: Props) {
   const { label, href } = props
-  const { active } = useNavState()
-  const { color } = useTheme()
+  const color = useColor()
+  const active = useActiveNav()
 
   const [containerElement, setContainerElement] =
     useState<HTMLDivElement | null>(null)
@@ -41,10 +41,6 @@ export function NavButton(props: Props) {
     }
     return false
   }, [href, active])
-
-  useEffect(() => {
-    console.log('effect:', active)
-  }, [active])
 
   const selectedColor = useMotionValue(color)
 

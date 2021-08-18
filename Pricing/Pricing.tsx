@@ -1,18 +1,24 @@
 import React from 'react'
 import s from './Pricing.module.scss'
-import { useTheme } from '../services/ThemeContext'
 import { useInView } from 'react-intersection-observer'
-import { useNavState } from '../components/Nav/NavStateContext'
 import Link from 'next/link'
 import { MailtoButton } from '../components/MailtoButton/MailtoButton'
 import { motion } from 'framer-motion'
+import { useScrollIn } from '../services/useScrollIn'
+import { useBackgroundColor } from '../services/useBackgroundColor'
+import { useColor } from '../services/useColor'
+import { useActiveNav } from '../services/useActiveNav'
+import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
+import { COLOR } from '../styles/COLOR'
 
 export function Pricing() {
-  const { ref, inView } = useInView({ threshold: 0.2 })
-  useTheme({ backgroundColor: '#000', color: '#fff' }, inView)
-  useNavState('/pricing', inView)
+  const { ref, inView, entry } = useInView(PAGE_IN_VIEW_OPTIONS)
+  useBackgroundColor('#0075C4', inView)
+  useColor(COLOR.WHITE, inView)
+  useActiveNav('/pricing', inView)
+  useScrollIn(inView, entry)
 
-  const cvariants = {
+  const articleVariants = {
     hidden: { opacity: 1 },
     visible: { opacity: 1, transition: { staggerChildren: 0.4 } },
   }
@@ -23,14 +29,13 @@ export function Pricing() {
   }
 
   return (
-    <motion.section
-      variants={cvariants}
+    <motion.article
+      variants={articleVariants}
       initial="hidden"
       animate="visible"
       ref={ref}
-      className={s.container}
     >
-      <div className={s.text}>
+      <section className={s.text}>
         <h2>Pricing</h2>
         <div>
           <p>
@@ -49,9 +54,9 @@ export function Pricing() {
             want to hear more about how I can help your business.
           </p>
         </div>
-      </div>
+      </section>
 
-      <div className={s.content}>
+      <section className={s.content}>
         <motion.div
           variants={variants}
           className={[s.packageContainer, s.consultantContainer].join(' ')}
@@ -225,7 +230,7 @@ export function Pricing() {
             className={s.mailtoButton}
           />
         </motion.div>
-      </div>
-    </motion.section>
+      </section>
+    </motion.article>
   )
 }
