@@ -1,0 +1,14 @@
+.nav {
+  position: fixed;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  height: 100px;
+  font-family: neue-haas-grotesk-display, sans-serif;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

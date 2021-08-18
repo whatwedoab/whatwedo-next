@@ -1,0 +1,17 @@
+.header {
+  position: fixed;
+  display: flex;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin: 0 2rem;
+}
+
+.logoContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.logoImg {
+}

@@ -1,0 +1,14 @@
+.container {
+  padding-top: 2rem;
+
+  &.center {
+    text-align: center;
+  }
+  .tag {
+    margin-right: 0.5rem;
+    background-color: #f1eae4;
+    padding: 4px 8px;
+    font-family: biko;
+    font-weight: 200;
+  }
+}

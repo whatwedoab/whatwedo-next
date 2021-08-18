@@ -1,0 +1,19 @@
+@import '../../../styles/font';
+
+.container {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.selected {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  height: 4px;
+  background-color: black;
+}

@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'biko';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Biko Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'biko';
+  font-style: normal;
+  font-weight: 200;
+  src: url('./Biko Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'biko';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./Biko Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'biko';
+  font-style: normal;
+  font-weight: 900;
+  src: url('./Biko Black.otf') format('opentype');
+}
