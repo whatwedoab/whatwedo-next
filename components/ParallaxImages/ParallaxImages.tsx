@@ -15,7 +15,7 @@ export function ParallaxImages(props: Props) {
       {images.map(({ src, alt }, i) => {
         const even = i % 2 === 0
         return (
-          <ParallaxItem key={src} power={0.1} direction={even ? 'down' : 'up'}>
+          <ParallaxItem key={src} power={0.1} direction={'up'}>
             <Image alt={alt} objectFit="contain" layout="fill" src={src} />
           </ParallaxItem>
         )

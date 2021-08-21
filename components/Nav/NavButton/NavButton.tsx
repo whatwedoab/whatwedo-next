@@ -29,7 +29,6 @@ export function NavButton(props: Props) {
   }, [containerElement])
 
   const isActive = useMemo(() => {
-    console.log('isActive?', active)
     if (active === href) {
       return true
     }

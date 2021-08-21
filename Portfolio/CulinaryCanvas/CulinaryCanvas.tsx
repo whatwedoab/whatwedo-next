@@ -76,8 +76,9 @@ export default function CulinaryCanvas() {
         delay={1.5}
         tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
       />
-
-      {!!height && <ParallaxImages images={parallaxImages} />}
+      <section className={s.parallaxContainer}>
+        {!!height && <ParallaxImages images={parallaxImages} />}
+      </section>
 
       <section className={s.contentContainer}>
         <ImageMosaic hrefs={mosaicHrefs} />

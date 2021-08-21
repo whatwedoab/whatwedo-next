@@ -1,18 +1,18 @@
 $orpheus: orpheuspro, biko, sans-serif;
-$neueDisplay: neue-haas-grotesk-display, sans-serif;
-$neueText: neue-haas-grotesk-text, sans-serif;
+$formaDisplay: forma-djr-display, sans-serif;
+$formaText: forma-djr-text, sans-serif;
 $biko: biko, sans-serif;
 
 @mixin orpheus() {
   font-family: $orpheus;
 }
 
-@mixin neue-display() {
-  font-family: $neueDisplay;
+@mixin formaDisplay() {
+  font-family: $formaDisplay;
 }
 
-@mixin neue-text() {
-  font-family: $neueText;
+@mixin formaText() {
+  font-family: $formaText;
 }
 
 @mixin biko() {
@@ -20,20 +20,20 @@ $biko: biko, sans-serif;
 }
 
 @mixin bodyFont() {
-  font-family: $neueText;
-  font-size: 20px;
+  font-family: $formaText;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.15;
 }
 
 @mixin h1Font() {
-  font-family: $neueDisplay;
+  font-family: $formaDisplay;
   font-size: 4.5rem;
   font-weight: 600;
 }
 
 @mixin h2Font() {
-  font-family: $neueDisplay;
+  font-family: $formaDisplay;
   font-size: 3.5rem;
   font-weight: 600;
 }
@@ -51,4 +51,8 @@ $biko: biko, sans-serif;
   font-family: $biko;
   font-size: 0.85rem;
   font-weight: 900;
+}
+
+@mixin pFont() {
+  font-weight: 300;
 }

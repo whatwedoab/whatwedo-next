@@ -43,4 +43,5 @@ h4 {
 
 p {
   @include pLayout();
+  @include pFont();
 }

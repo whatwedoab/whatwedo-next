@@ -33,9 +33,9 @@ export default function Portfolio() {
       />
       <PortfolioItem
         name="Frågvist"
-        tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
-        imageSrc="/assets/culinary-canvas-logo.svg"
-        href="/culinary-canvas"
+        tags={['logo', 'visual identity']}
+        imageSrc="/assets/fragvist/fragvist-logomark-gradient.svg"
+        href="/fragvist"
       />
     </article>
   )

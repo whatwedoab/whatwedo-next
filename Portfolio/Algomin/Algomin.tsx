@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Algomin.module.scss'
 import { useWindowSize } from '../../services/useWindowSize'
 import { ImageMosaic } from '../../components/ImageMosaic/ImageMosaic'
 import { Tags } from '../../components/Tags/Tags'
 import { ParallaxImages } from '../../components/ParallaxImages/ParallaxImages'
-import { motion, Variants } from 'framer-motion'
+import {
+  motion,
+  useTransform,
+  useViewportScroll,
+  Variants,
+} from 'framer-motion'
 import { Image } from '../../components/Image/Image'
 import { useBackgroundColor } from '../../services/useBackgroundColor'
 import { useInView } from 'react-intersection-observer'
@@ -34,6 +39,12 @@ export default function Algomin() {
   useBackgroundColor(COLOR.WHITE, inView)
   useColor(COLOR.BLACK, inView)
   useActiveNav('/portfolio', inView)
+  const { scrollYProgress } = useViewportScroll()
+
+  useEffect(() => scrollYProgress.onChange(console.log), [scrollYProgress])
+
+  const blobb1Y = useTransform(scrollYProgress, [0, 1], ['50%', '-50%'])
+  const blobb2Y = useTransform(scrollYProgress, [0, 1], ['-50%', '50%'])
 
   const nameVariants: Variants = {
     hidden: { opacity: 0, y: -25 },
@@ -63,6 +74,57 @@ export default function Algomin() {
           src="/assets/algomin/algomin-phone.jpg"
           priority
           onLoadingComplete={() => setMockupLoaded(true)}
+        />
+      </motion.div>
+
+      <motion.div
+        className={s.blobb1}
+        animate={{
+          rotateX: 20,
+          rotateZ: 50,
+          scaleX: 1.1,
+          translateY: 100,
+        }}
+        style={{ y: blobb1Y }}
+        transition={{
+          ease: 'easeInOut',
+          duration: 5,
+          repeat: Infinity,
+          repeatType: 'mirror',
+          repeatDelay: 0,
+        }}
+      >
+        <Image
+          alt="Algomin blobb"
+          objectFit="contain"
+          objectPosition="left"
+          layout="fill"
+          src="/assets/algomin/algomin-blobb-1.svg"
+        />
+      </motion.div>
+
+      <motion.div
+        className={s.blobb2}
+        animate={{
+          rotateX: -40,
+          rotateZ: 30,
+          translateY: -150,
+        }}
+        style={{ y: blobb2Y }}
+        transition={{
+          ease: 'easeInOut',
+          duration: 6,
+          repeat: Infinity,
+          repeatType: 'mirror',
+          repeatDelay: 0,
+        }}
+      >
+        <Image
+          alt="Algomin blobb"
+          objectFit="contain"
+          objectPosition="left"
+          layout="fill"
+          src="/assets/algomin/algomin-blobb-2.svg"
         />
       </motion.div>
 

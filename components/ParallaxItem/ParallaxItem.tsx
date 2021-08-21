@@ -28,8 +28,8 @@ export function ParallaxItem(props: Props) {
 
   const yInputRange = useMemo(() => {
     return direction === 'down'
-      ? [offsetTop - 500, offsetTop + 500]
-      : [offsetTop + 250, offsetTop - 250]
+      ? [offsetTop - 1500, offsetTop + 500]
+      : [offsetTop + 1250, offsetTop - 250]
   }, [offsetTop, direction])
 
   const revealInputRange = useMemo(

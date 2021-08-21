@@ -9,6 +9,9 @@ export const COLOR = {
     PINK_LIGHT: '#f2cfcf',
     YELLOW_LIGHT: '#fff399',
   },
+  FRAGVIST: {
+    BEIGE: '#F9EED3',
+  },
   GREY_LIGHTEST: '#dae2e7',
   GREY_LIGHTER: '#f1eae4',
 }

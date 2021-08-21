@@ -4,6 +4,12 @@
   position: relative;
   display: inline-block;
   margin: 0 1rem;
+
+  a {
+    font-family: $formaText;
+    font-size: 20px;
+    font-weight: 300;
+  }
 }
 
 .wrapper {
