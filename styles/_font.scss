@@ -1,12 +1,7 @@
-$orpheus: orpheuspro, biko, sans-serif;
 $formaDisplay: forma-djr-display, sans-serif;
 $neueDisplay: neue-haas-grotesk-display, sans-serif;
 $neueText: neue-haas-grotesk-text, sans-serif;
 $biko: biko, sans-serif;
-
-@mixin orpheus() {
-  font-family: $orpheus;
-}
 
 @mixin formaDisplay() {
   font-family: $formaDisplay;
