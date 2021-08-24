@@ -47,9 +47,10 @@ export function PortfolioItem(props: Props) {
                 className={s.image}
                 alt={name}
                 objectFit="cover"
-                objectPosition="center bottom"
+                objectPosition="center"
                 layout="fill"
                 src={imageSrc}
+                quality={100}
                 priority
               />
             </motion.div>
@@ -66,7 +67,7 @@ export function PortfolioItem(props: Props) {
 
           <div className={s.textContainer}>
             <h3>{name}</h3>
-            <Tags tags={tags} />
+            <Tags tags={tags} containerClassName={s.tagsContainer} />
           </div>
         </motion.section>
       </Link>

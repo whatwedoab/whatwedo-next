@@ -101,14 +101,14 @@ export default function Fragvist() {
           className={s.logoContainer}
           initial="hidden"
           animate={logoLoaded ? 'visible' : 'hidden'}
-          transition={{ type: 'tween', duration: 7, ease: 'anticipate' }}
+          transition={{ type: 'tween', duration: 2, ease: 'anticipate' }}
           variants={logoVariants}
         >
           <Image
             alt="Frågvist logo"
             objectFit="contain"
             layout="fill"
-            src="/assets/fragvist/fragvist-logo-3.svg"
+            src="/assets/fragvist/fragvist-logo.svg"
             priority
             containerClassName={s.imageWrapper}
             onLoadingComplete={() => setLogoLoaded(true)}

@@ -88,22 +88,8 @@ export default function Algomin() {
         />
       </motion.div>
 
-      <motion.div
+      <div
         className={s.blobb1}
-        animate={{
-          rotateX: 20,
-          rotateZ: 50,
-          scaleX: 1.1,
-          translateY: 100,
-        }}
-        style={{ y: blobb1Y }}
-        transition={{
-          ease: 'easeInOut',
-          duration: 5,
-          repeat: Infinity,
-          repeatType: 'mirror',
-          repeatDelay: 0,
-        }}
       >
         <Image
           alt="Algomin blobb"
@@ -112,23 +98,10 @@ export default function Algomin() {
           layout="fill"
           src="/assets/algomin/algomin-blobb-1.svg"
         />
-      </motion.div>
+      </div>
 
-      <motion.div
+      <div
         className={s.blobb2}
-        animate={{
-          rotateX: -40,
-          rotateZ: 30,
-          translateY: -150,
-        }}
-        style={{ y: blobb2Y }}
-        transition={{
-          ease: 'easeInOut',
-          duration: 6,
-          repeat: Infinity,
-          repeatType: 'mirror',
-          repeatDelay: 0,
-        }}
       >
         <Image
           alt="Algomin blobb"
@@ -137,14 +110,14 @@ export default function Algomin() {
           layout="fill"
           src="/assets/algomin/algomin-blobb-2.svg"
         />
-      </motion.div>
+      </div>
 
       <article className={s.article}>
         <motion.section
           className={s.nameContainer}
           initial="hidden"
           animate={mockupLoaded ? 'visible' : 'hidden'}
-          transition={{ duration: 3, ease: 'anticipate' }}
+          transition={{ duration: 2, ease: 'anticipate' }}
           variants={nameVariants}
         >
           <h1>Algomin</h1>
