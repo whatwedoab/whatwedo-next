@@ -19,9 +19,7 @@ export function useParagraphPrinter(
     const printedText = paragraphs[paragraphIndex]
     const nextIndex = printedText.length
 
-    console.log(nextIndex, text?.length)
     if (nextIndex >= text?.length) {
-      console.log('time')
       onComplete && onComplete()
       return
     }
