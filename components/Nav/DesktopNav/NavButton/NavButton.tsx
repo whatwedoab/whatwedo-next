@@ -2,16 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import s from './NavButton.module.scss'
 import { animate, motion, useMotionValue } from 'framer-motion'
-import { useActiveNav } from '../../../services/useActiveNav'
-import { useAppContext } from '../../../services/App.context'
+import { useActiveNav } from '../../../../services/useActiveNav'
+import { useAppContext } from '../../../../services/App.context'
 
 interface Props {
   label: string
   href: string
+  onPress?: () => void
 }
 
 export function NavButton(props: Props) {
-  const { label, href } = props
+  const { label, href, onPress } = props
   const { color } = useAppContext()
   const active = useActiveNav()
 
@@ -38,10 +39,12 @@ export function NavButton(props: Props) {
 
   return (
     <motion.div
+      role="link"
       className={s.container}
       ref={(r) => setContainerElement(r)}
       animate={{ color }}
       transition={{ ease: 'anticipate' }}
+      onClick={() => !!onPress && onPress()}
     >
       <div className={s.wrapper}>
         {isActive && (

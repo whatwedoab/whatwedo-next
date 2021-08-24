@@ -1,4 +1,4 @@
-import { HEADER_HEIGHT, useAppContext } from './App.context'
+import { MOBILE_HEADER_HEIGHT, useAppContext } from './App.context'
 import { useEffect } from 'react'
 import { useViewportScroll } from 'framer-motion'
 
@@ -8,7 +8,7 @@ export function useActiveNav(value?: string, top?: number | null, bottom?: numbe
   const { scrollY } = useViewportScroll()
 
   useEffect(() => {
-    const threshold = scrollY.get() + HEADER_HEIGHT / 2
+    const threshold = scrollY.get() + MOBILE_HEADER_HEIGHT / 2
     if (
       !!value &&
       top !== null &&
@@ -31,7 +31,7 @@ export function useActiveNav(value?: string, top?: number | null, bottom?: numbe
       bottom !== undefined
     ) {
       return scrollY.onChange((v) => {
-        const threshold = v + HEADER_HEIGHT / 2
+        const threshold = v + MOBILE_HEADER_HEIGHT / 2
         if (threshold > top && threshold < bottom) {
           setActiveNav(value)
         }

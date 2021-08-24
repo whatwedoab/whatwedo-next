@@ -30,7 +30,7 @@ export function About() {
     <article className={s.container} ref={setRefs}>
       <h1>About</h1>
       <section className={s.gridContainer}>
-        <p className={s.topLeftP}>
+        <p>
           My name is Mikael. I&apos;m a full stack developer by trade and a
           graphic designer by heart. <br />I have more than fifteen years of
           experience developing and designing apps, web sites and assets.
@@ -42,7 +42,7 @@ export function About() {
           layout="fill"
           objectFit="cover"
         />
-        <p className={s.bottomRightP}>
+        <p>
           I offer personal and flexible solutions for anyone in need of
           technical and/or graphical services. I have a thing for startups and
           small businesses and can offer full scale solutions at affordable

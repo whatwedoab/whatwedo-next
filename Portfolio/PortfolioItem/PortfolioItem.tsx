@@ -47,7 +47,7 @@ export function PortfolioItem(props: Props) {
                 className={s.image}
                 alt={name}
                 objectFit="cover"
-                objectPosition="center"
+                objectPosition="center bottom"
                 layout="fill"
                 src={imageSrc}
                 priority

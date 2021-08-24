@@ -14,6 +14,18 @@
   min-height: 100vh;
   background-color: $culinaryCanvasPinkLight;
   color: $black;
+
+  @media all and (max-width: 840px) {
+    margin-top: -$mobileHeaderHeight;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  h4 {
+    margin-top: 0;
+  }
 }
 
 .triangle {
@@ -32,13 +44,22 @@
   flex-direction: column;
   width: 50vw;
   height: 25vw;
-  margin-top: 30vh;
+
+  @media all and (min-width: 841px) {
+    margin-top: 30vh;
+  }
+  @media all and (max-width: 840px) {
+    width: 90vw;
+    height: 50vh;
+  }
 }
 
 .parallaxContainer {
   display: flex;
   width: 100%;
-  margin: 5vh 0;
+  @media all and (min-width: 841px) {
+    margin: 5vh 0;
+  }
 }
 
 .gridContainer {

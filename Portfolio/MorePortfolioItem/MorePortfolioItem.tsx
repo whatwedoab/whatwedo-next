@@ -36,6 +36,7 @@ export function MorePortfolioItem(props: Props) {
                 alt={linkName}
                 width={20}
                 height={20}
+                objectPosition="bottom center"
               />
             </a>
           </h3>

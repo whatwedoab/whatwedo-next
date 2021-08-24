@@ -81,7 +81,6 @@ export default function Algomin() {
         <Image
           alt="Algomin phone"
           objectFit="cover"
-          objectPosition="left"
           layout="fill"
           src="/assets/algomin/algomin-phone.jpg"
           priority

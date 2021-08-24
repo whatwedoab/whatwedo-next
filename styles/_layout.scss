@@ -1,12 +1,12 @@
 $desktopHeaderHeight: 100px;
 $mobileHeaderHeight: 60px;
 
-@mixin headerHeight(){
-  @media all and (max-width: 840px){
+@mixin headerHeight() {
+  @media all and (max-width: 840px) {
     height: $mobileHeaderHeight;
   }
 
-  @media all and (min-width: 841px){
+  @media all and (min-width: 841px) {
     height: $desktopHeaderHeight;
   }
 }
@@ -21,22 +21,28 @@ $mobileHeaderHeight: 60px;
   flex-direction: column;
   align-items: center;
   padding: 0;
+
+  @media all and (max-width: 840px) {
+    justify-content: center;
+    padding-top: $mobileHeaderHeight;
+  }
 }
 
 @mixin articleLayout() {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
   margin: 0;
 
   @media all and (min-width: 841px) {
+    justify-content: flex-start;
     padding: 2rem 10vw 10vh;
   }
   @media all and (max-width: 840px) {
-    padding: $desktopHeaderHeight 1rem;
+    justify-content: center;
+    padding: 1rem;
   }
 }
 

@@ -12,7 +12,20 @@
 
 .content {
   display: grid;
-  grid-template-columns: repeat(2, minmax(20rem, 30rem));
-  padding: 5rem 0;
   gap: 10rem;
+
+  @media all and (min-width: 841px) {
+    grid-template-columns: repeat(2, minmax(20rem, 30rem));
+    padding: 5rem 0;
+  }
+
+  @media all and (max-width: 840px) {
+    grid-auto-rows: auto;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    width: 100%;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+    gap: 5rem;
+  }
 }

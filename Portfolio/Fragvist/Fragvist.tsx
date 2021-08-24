@@ -33,8 +33,8 @@ const parallaxImages = [
   },
 ]
 
-const mosaicHrefs = Array.from(new Array(12)).map(
-  (_, i) => `/assets/culinary-canvas/mosaic/Web 1920 ${i + 1}.jpg`,
+const mosaicHrefs = Array.from(new Array(6)).map(
+  (_, i) => `/assets/fragvist/mosaic/Web 1280 – ${i + 1}.png`,
 )
 
 export default function Fragvist() {
@@ -134,60 +134,8 @@ export default function Fragvist() {
           {!!height && <ParallaxImages images={parallaxImages} />}
         </section>
 
-        <section className={s.contentContainer}>
-          <ImageMosaic hrefs={mosaicHrefs} />
-        </section>
-
-        <section className={s.contentContainer}>
-          <h3>The job</h3>
-          <p>
-            Culinary Canvas celebrates the creativity of culinary and beverage
-            professionals around the world. High-end editorial content with
-            vibrant and eye-catching photography.
-          </p>
-          <h4>Logo</h4>
-          <p>
-            A modern brand, with lots of space for creativity. The lower stripe
-            in the mark represents the shelf of an easel; the space between the
-            shelf and the C symbolises the blank canvas. The logotype is made
-            with the Sofia Pro type and sports all capital letters with a wide
-            letter-spacing.
-          </p>
-          <h4>Web</h4>
-          <p>
-            The imagery is the star content of Culinary Canvas. Emphasis on the
-            layout is therefore to give the photos room to shine. This is
-            coupled with type faces that are picked to give a modern feel, while
-            also offering diversity enough to create expressive article layouts.
-          </p>
-          <h4>Tech</h4>
-          <p>
-            Culinary Canvas runs in the cloud. This allows the site to scale
-            without worrying about hardware capacity and limitations, but
-            instead leverage the awesome computing power offered by the dragons
-            of the tech industry.
-          </p>
-          <p>
-            The content, the articles, is curated with our own custom made CMS.
-            It&apos;s tailor made to fit the current needs while giving us the
-            full control to adjust and tinker it to future needs.{' '}
-          </p>
-          <p>
-            <i>
-              Contact me if you&apos;re interested in learning more about the
-              stack and the technical solution.
-            </i>
-          </p>
-          <p>
-            <a
-              href="https://culinary-canvas.com"
-              title="Culinary Canvas"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://culinary-canvas.com
-            </a>
-          </p>
+        <section className={s.mosaicContainer}>
+          <ImageMosaic hrefs={mosaicHrefs} columns={3} />
         </section>
       </article>
     </>

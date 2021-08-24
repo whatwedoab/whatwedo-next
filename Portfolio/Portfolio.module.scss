@@ -12,7 +12,10 @@
   align-items: flex-start;
 
   h2 {
-    text-align: center;
     width: 100%;
+    text-align: center;
+    @media all and (max-width: 840px) {
+      margin-top: 0;
+    }
   }
 }

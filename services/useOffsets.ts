@@ -14,6 +14,13 @@ export function useOffsets<T extends HTMLElement>(
           setBottom(ref.current.offsetTop + ref.current.clientHeight)
         }
       })
+      setTimeout(() => {
+        if (!!ref.current) {
+          setTop(ref.current.offsetTop)
+          console.log('setting late offsettop', ref.current?.offsetTop)
+          setBottom(ref.current.offsetTop + ref.current.clientHeight)
+        }
+      }, 1000)
     }
   }, [ref])
 

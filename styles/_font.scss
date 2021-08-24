@@ -31,8 +31,10 @@ $biko: biko, sans-serif;
   font-family: $formaDisplay;
   font-size: 4.5rem;
   font-weight: 600;
+
   @media all and (max-width: 840px) {
-    font-size: 2rem;
+    text-align: center;
+    font-size: 3rem;
   }
 }
 
@@ -40,11 +42,19 @@ $biko: biko, sans-serif;
   font-family: $formaDisplay;
   font-size: 3.5rem;
   font-weight: 600;
+
+  @media all and (max-width: 840px) {
+    font-size: 2.5rem;
+  }
 }
 
 @mixin h3Font() {
   font-size: 3rem;
   font-weight: 600;
+
+  @media all and (max-width: 840px) {
+    font-size: 2rem;
+  }
 }
 
 @mixin h4Font() {

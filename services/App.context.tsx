@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { IntersectionOptions } from 'react-intersection-observer'
 
-export const HEADER_HEIGHT = 100
+export const MOBILE_HEADER_HEIGHT = 60
 export const PAGE_IN_VIEW_OPTIONS: IntersectionOptions = { threshold: 0.05 }
 export const DEFAULT_KEYWORDS = [
   'what we do',
@@ -20,10 +20,12 @@ export const DEFAULT_KEYWORDS = [
   'self employed',
   'consultant',
 ]
+/*
 export interface HeaderColor {
   color: string
   boundary: number
 }
+*/
 
 export interface AppContextValues {
   backgroundColor: string
@@ -32,6 +34,7 @@ export interface AppContextValues {
   logoVisible: boolean
   navVisible: boolean
   activeNav: string
+  mobileNavOpened: boolean
 }
 
 export interface AppContextActions {
@@ -41,6 +44,7 @@ export interface AppContextActions {
   showLogo: (v: boolean) => void
   showNav: (v: boolean) => void
   setActiveNav: (v: string) => void
+  setMobileNavOpened: (v: boolean) => void
 }
 
 export type AppContext = AppContextValues & AppContextActions
@@ -55,7 +59,9 @@ export function useAppContext(): AppContext {
   return context
 }
 
-export function useAppContextInit(values: AppContextValues): AppContext {
+export function useAppContextInit(
+  values: Omit<AppContextValues, 'mobileNavOpened'>,
+): AppContext {
   const [backgroundColor, setBackgroundColor] = useState<string>(
     values.backgroundColor,
   )
@@ -64,6 +70,7 @@ export function useAppContextInit(values: AppContextValues): AppContext {
   const [logoVisible, showLogo] = useState<boolean>(values.logoVisible)
   const [navVisible, showNav] = useState<boolean>(values.navVisible)
   const [activeNav, setActiveNav] = useState<string>(values.activeNav)
+  const [mobileNavOpened, setMobileNavOpened] = useState<boolean>(false)
 
   return {
     backgroundColor,
@@ -78,5 +85,7 @@ export function useAppContextInit(values: AppContextValues): AppContext {
     showNav,
     activeNav,
     setActiveNav,
+    mobileNavOpened,
+    setMobileNavOpened,
   }
 }
