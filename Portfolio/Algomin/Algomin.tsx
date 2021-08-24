@@ -120,7 +120,7 @@ export default function Algomin() {
           transition={{ duration: 2, ease: 'anticipate' }}
           variants={nameVariants}
         >
-          <h1>Algomin</h1>
+          <h1>Algomin</h1>p
           <Tags
             containerClassName={s.tagsContainer}
             delay={1.5}
