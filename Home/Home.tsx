@@ -50,7 +50,7 @@ export function Home() {
       >
         <motion.h1
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 2 } }}
+          animate={{ opacity: 1, transition: { delay: 1.5 } }}
           transition={{ ease: 'anticipate' }}
           className={s.h1}
         >
@@ -69,7 +69,7 @@ export function Home() {
           className={s.carouselContainer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 3 }}
         >
           <ImageCarousel
             srcs={[

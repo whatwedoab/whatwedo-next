@@ -8,6 +8,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  display: flex;
 }
 
 .article {
@@ -35,6 +36,7 @@
 
   @media all and (min-width: 841px) {
     width: 55vw;
+    margin-right: 1rem;
   }
   @media all and (max-width: 840px) {
     margin-bottom: 2rem;
