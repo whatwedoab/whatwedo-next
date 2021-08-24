@@ -1,0 +1,18 @@
+@import '../styles/font';
+@import '../styles/color';
+@import '../styles/layout';
+
+.article {
+  @include articleLayout();
+  justify-content: center;
+  align-items: center;
+  background-color: $greyLightest;
+  color: $blue;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(20rem, 30rem));
+  padding: 5rem 0;
+  gap: 10rem;
+}

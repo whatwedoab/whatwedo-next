@@ -4,14 +4,16 @@
 
 .container {
   @include articleLayout();
+  background-color: $coral;
+  color: $yellowLight;
 }
 
 .sticky {
   position: sticky;
-  top: $headerHeight;
+  top: $desktopHeaderHeight;
 }
 
-.contentContainer {
+.gridContainer {
   position: relative;
   display: grid;
   grid-template:
@@ -20,10 +22,14 @@
     / minmax(20rem, 40rem) minmax(20rem, 40rem);
   gap: 2rem;
 
+  a {
+    color: inherit;
+  }
+
   p {
-    font-family: $formaText;
+    font-family: $neueText;
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 600;
   }
 
   .logo {
@@ -42,20 +48,21 @@
     height: 100%;
     max-height: 40vmax;
   }
+}
 
+.footerContainer {
+  hr {
+    margin: 2rem;
+    border-style: solid;
+    border-width: 2px;
+  }
   .keyWordsContainer {
     display: flex;
     flex-wrap: wrap;
-    padding: 2rem;
+    padding: 0 2rem;
     text-transform: uppercase;
     font-family: $biko;
-    font-size: 1.5rem;
+    font-weight: 400;
     gap: 1rem;
-  }
-
-  hr {
-    margin: 2rem;
-    border-color: white;
-    border-width: 2px;
   }
 }

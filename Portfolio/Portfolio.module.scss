@@ -1,10 +1,18 @@
+@import '../styles/color';
 @import '../styles/layout';
 
 .article {
-  padding-bottom: 50vh;
+  @include articleLayout();
+  background-color: $white;
 }
 
-.h1 {
-  top: $headerHeight;
-  z-index: 2;
+.otherContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h2 {
+    text-align: center;
+    width: 100%;
+  }
 }

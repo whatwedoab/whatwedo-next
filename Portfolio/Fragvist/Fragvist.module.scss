@@ -19,11 +19,17 @@
   justify-content: center;
   align-items: center;
   width: 50vw;
-  height: 60vh;
-  margin: 15vh 2rem 2rem;
+  height: 100vh;
+
+  .imageWrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60vh;
+  }
 }
 
-.contentContainer {
+.gridContainer {
   position: relative;
   flex-shrink: 0;
   width: 50%;
@@ -37,14 +43,25 @@
   }
 
   p {
-    font-family: $formaText;
     color: $greyDark;
+    font-family: $neueText;
   }
+}
+
+.contentContainer {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  max-width: 900px;
+  column-count: 2;
 }
 
 .parallaxContainer {
   display: flex;
   width: 100%;
+  max-width: 1600px;
   margin: 5vh 0;
 }
 

@@ -7,16 +7,17 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0.5rem;
+  z-index: 1;
 
   &.center {
     text-align: center;
   }
   .tag {
-    padding: 4px 8px;
+    padding: 6px 8px 2px;
     background-color: $greyLighter;
     font-family: $biko;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 400;
   }
 }

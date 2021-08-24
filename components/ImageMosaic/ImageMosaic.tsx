@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import s from './ImageMosaic.module.scss'
-import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { Image } from '../Image/Image'
 
 interface Props {
   hrefs: string[]
@@ -12,6 +12,8 @@ interface Props {
 
 export function ImageMosaic(props: Props) {
   const { hrefs, backgroundColor = 'transparent', columns = 4 } = props
+  const [loaded, setLoaded] = useState(new Set<string>())
+
   const container: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
@@ -41,7 +43,7 @@ export function ImageMosaic(props: Props) {
       }}
       variants={container}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate={inView && loaded.size === hrefs.length ? 'visible' : 'hidden'}
     >
       {hrefs.map((href) => (
         <motion.div key={href} className={s.cell} variants={image}>
@@ -51,7 +53,7 @@ export function ImageMosaic(props: Props) {
             layout="fill"
             objectFit="contain"
             objectPosition="center"
-            priority
+            onLoadingComplete={() => loaded.add(href)}
           />
         </motion.div>
       ))}

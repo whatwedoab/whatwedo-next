@@ -1,92 +1,149 @@
-import React from 'react'
+import React, { useCallback, useRef } from 'react'
 import s from './Contact.module.scss'
-import Phone from '@streamlinehq/streamlinehq/img/streamline-regular/phones-mobile-devices/phone/phone.svg'
-import Envelope from '@streamlinehq/streamlinehq/img/streamline-regular/emails/envelopes/envelope.svg'
 import SocialInstagram from '@streamlinehq/streamlinehq/img/streamline-bold/logos/photos-images/social-instagram.svg'
 import SocialMediaFacebook from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-facebook.svg'
-import DesignerCommunityDribbble from '@streamlinehq/streamlinehq/img/streamline-bold/logos/designers-communities/designer-community-dribbble.svg'
-import SocialMediaTwitter from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-twitter.svg'
 import DeveloperCommunityGithub1 from '@streamlinehq/streamlinehq/img/streamline-bold/logos/developer-communities/developer-community-github-1.svg'
+import ProfessionalNetworkLinkedin from '@streamlinehq/streamlinehq/img/streamline-bold/logos/professional-networks/professional-network-linkedin.svg'
 import { Image } from '../components/Image/Image'
 import { useInView } from 'react-intersection-observer'
 import { useScrollIn } from '../services/useScrollIn'
-import { useBackgroundColor } from '../services/useBackgroundColor'
 import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
 import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
 import { COLOR } from '../styles/COLOR'
+import Link from 'next/link'
+import { useBackgroundColor } from '../services/useBackgroundColor'
+import { useOffsets } from '../services/useOffsets'
+
+const ICON_SIZE = 32
 
 export function Contact() {
-  const { ref, inView, entry } = useInView(PAGE_IN_VIEW_OPTIONS)
-  useBackgroundColor(COLOR.PINK_LIGHT, inView)
-  useColor(COLOR.BLACK, inView)
-  useActiveNav('/contact', inView)
+  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
+  const ref = useRef<HTMLElement>()
+
+  const setRefs = useCallback(
+    (node: HTMLElement) => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef],
+  )
+  const { top, bottom } = useOffsets(ref)
+  useBackgroundColor(COLOR.WHITE, top, bottom)
+  useColor(COLOR.BLACK, top, bottom)
+  useActiveNav('/contact', top, bottom)
   useScrollIn(inView, entry)
 
   return (
-    <article ref={ref}>
-      <h2>Contact</h2>
+    <article ref={setRefs} className={s.article}>
+      <h1>Contact</h1>
+      <div className={s.gridContainer}>
+        <section>
+          <ul>
+            <li>
+              <Link href="tel:+46739-596-096">+46 (0) 739-596 096</Link>
+            </li>
+            <li>
+              <Link href="mailto:mikael@whatwedo.se">mikael@whatwedo.se</Link>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <ul>
+            <li>
+              <a
+                href="https://www.instagram.com/whatwedoab/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  alt="Instagram"
+                  src={SocialInstagram}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  containerClassName={s.icon}
+                />
+                Instagram
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.facebook.com/whatwedoab/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  alt="Facebook"
+                  src={SocialMediaFacebook}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  containerClassName={s.icon}
+                />
+                Facebook
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.linkedin.com/whatwedoab/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  alt="LinkedIn"
+                  src={ProfessionalNetworkLinkedin}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  containerClassName={s.icon}
+                />
+                LinkedIn
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.facebook.com/whatwedoab/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  alt="Github"
+                  src={DeveloperCommunityGithub1}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  containerClassName={s.icon}
+                />
+                Github
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      {/*
       <section>
         <ul className={s.row}>
           <li>
             <Image
-              alt="Phone"
-              src={Phone}
-              width={50}
-              height={50}
-              className={s.icon}
-            />
-            <span className={s.detailText}>+46 (0) 739-596 096</span>
-          </li>
-          <li>
-            <Image
-              alt="Email"
-              src={Envelope}
-              width={50}
-              height={50}
-              className={s.icon}
-            />
-            <span className={s.detailText}>mikael@whatwedo.se</span>
-          </li>
-          <li>
-            <Image
-              alt="Instagram"
-              src={SocialInstagram}
-              width={50}
-              height={50}
-              className={s.icon}
-            />
-            <Image
-              alt="Facebook"
-              src={SocialMediaFacebook}
-              width={50}
-              height={50}
-              className={s.icon}
-            />
-            <Image
               alt="Twitter"
               src={SocialMediaTwitter}
-              width={50}
-              height={50}
-              className={s.icon}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              containerClassName={s.icon}
             />
             <Image
               alt="Dribbble"
               src={DesignerCommunityDribbble}
-              width={50}
-              height={50}
-              className={s.icon}
-            />
-            <Image
-              alt="Github"
-              src={DeveloperCommunityGithub1}
-              width={50}
-              height={50}
-              className={s.icon}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              containerClassName={s.icon}
             />
           </li>
         </ul>
       </section>
+*/}
     </article>
   )
 }

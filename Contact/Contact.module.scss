@@ -1,18 +1,47 @@
 @import '../styles/font';
 @import '../styles/layout';
+@import '../styles/color';
+
+.article {
+  @include articleLayout();
+  background-color: $white;
+  color: $black;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 2rem;
+  font-weight: 600;
+  gap: 2rem;
+
+  a {
+    color: inherit;
+  }
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    height: 3rem;
+    a {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+}
 
 .row {
   padding: 0;
   list-style-type: none;
 
-  li {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem 0;
-  }
-
   .detailText {
     margin-left: 1rem;
   }
+}
+
+.icon {
+  padding-right: 1rem;
 }

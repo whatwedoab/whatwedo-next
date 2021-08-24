@@ -20,7 +20,7 @@ export function Tags(props: Props) {
   }
   const item = {
     hidden: { opacity: 0 },
-    visible: { opacity: 0.7 },
+    visible: { opacity: 1 },
   }
   return (
     <motion.div

@@ -16,16 +16,8 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/*       <title>What we do</title>
-           */}
-          <meta
-            name="description"
-            content="We do web pages, applications and graphic design"
-          />
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://use.typekit.net/qsu1yne.css" />
-          <link rel="stylesheet" href="/assets/fonts/biko.css" />
-          <link rel="stylesheet" href="/assets/style/normalize.css" />
         </Head>
         <body>
           <Main />

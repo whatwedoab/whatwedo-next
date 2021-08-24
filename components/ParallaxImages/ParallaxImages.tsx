@@ -16,7 +16,7 @@ export function ParallaxImages(props: Props) {
         const even = i % 2 === 0
         return (
           <ParallaxItem key={src} power={0.1} direction={'up'}>
-            <Image alt={alt} objectFit="contain" layout="fill" src={src} />
+            <Image alt={alt} objectFit="contain" layout="fill" src={src} quality={100}/>
           </ParallaxItem>
         )
       })}

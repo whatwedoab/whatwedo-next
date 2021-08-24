@@ -24,11 +24,9 @@ export function PortfolioItem(props: Props) {
     }
   }, [ref])
 
-  const innerHeight = useRef(1200).current
-
   const imageY = useTransform(
     scrollY,
-    [offsetTop - innerHeight, offsetTop + 500],
+    [offsetTop - 1000, offsetTop + 500],
     ['-10%', '10%'],
   )
 

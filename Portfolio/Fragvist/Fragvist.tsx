@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import s from './Fragvist.module.scss'
 import { useWindowSize } from '../../services/useWindowSize'
 import { ImageMosaic } from '../../components/ImageMosaic/ImageMosaic'
@@ -11,6 +11,8 @@ import { useBackgroundColor } from '../../services/useBackgroundColor'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
+import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
+import { useOffsets } from '../../services/useOffsets'
 
 const parallaxImages = [
   {
@@ -38,10 +40,20 @@ const mosaicHrefs = Array.from(new Array(12)).map(
 export default function Fragvist() {
   const { height } = useWindowSize()
   const [logoLoaded, setLogoLoaded] = useState<boolean>(false)
-  const { ref, inView } = useInView()
-  useBackgroundColor(COLOR.FRAGVIST.BEIGE, inView)
-  useColor(COLOR.BLACK, inView)
-  useActiveNav('/portfolio', inView)
+  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
+  const ref = useRef<HTMLElement>()
+
+  const setRefs = useCallback(
+    (node: HTMLElement) => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef],
+  )
+  const { top, bottom } = useOffsets(ref)
+  useBackgroundColor(COLOR.FRAGVIST.BEIGE, top, bottom)
+  useColor(COLOR.BLACK, top, bottom)
+  useActiveNav('/portfolio', top, bottom)
 
   const logoVariants: Variants = {
     hidden: { opacity: 0, y: 25 },
@@ -84,7 +96,7 @@ export default function Fragvist() {
           />
         </div>
       </div>
-      <article className={s.article} ref={ref}>
+      <article className={s.article} ref={setRefs}>
         <motion.section
           className={s.logoContainer}
           initial="hidden"
@@ -92,27 +104,20 @@ export default function Fragvist() {
           transition={{ type: 'tween', duration: 7, ease: 'anticipate' }}
           variants={logoVariants}
         >
-          <a
-            href="https://culinary-canvas.com"
-            title="Culinary Canvas"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              alt="Frågvist logo"
-              objectFit="contain"
-              layout="fill"
-              src="/assets/fragvist/fragvist-logo-3.svg"
-              priority
-              onLoadingComplete={() => setLogoLoaded(true)}
-            />
-          </a>
+          <Image
+            alt="Frågvist logo"
+            objectFit="contain"
+            layout="fill"
+            src="/assets/fragvist/fragvist-logo-3.svg"
+            priority
+            containerClassName={s.imageWrapper}
+            onLoadingComplete={() => setLogoLoaded(true)}
+          />
+          <Tags
+            delay={1.5}
+            tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
+          />
         </motion.section>
-
-        <Tags
-          delay={1.5}
-          tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
-        />
 
         <section className={s.contentContainer}>
           <p>

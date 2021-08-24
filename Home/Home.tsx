@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import s from './Home.module.scss'
 import { ImageCarousel } from '../components/ImageCarousel/ImageCarousel'
 import { useInView } from 'react-intersection-observer'
@@ -6,20 +6,32 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Logo } from '../components/Logo/Logo'
 import { useScrollIn } from '../services/useScrollIn'
-import { useBackgroundColor } from '../services/useBackgroundColor'
 import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
 import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
 import { COLOR } from '../styles/COLOR'
 import { useShowLogo } from '../services/useShowLogo'
 import { useShowNav } from '../services/useShowNav'
+import { useOffsets } from '../services/useOffsets'
+import { useBackgroundColor } from '../services/useBackgroundColor'
 
 export function Home() {
-  const { ref, inView, entry } = useInView(PAGE_IN_VIEW_OPTIONS)
-  useBackgroundColor(COLOR.BLUE_LIGHT, inView)
-  useColor(COLOR.BLACK, inView)
-  useActiveNav('/', inView)
+  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
+  const ref = useRef<HTMLElement>()
+
+  const setRefs = useCallback(
+    (node: HTMLElement) => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef],
+  )
+  const { top, bottom } = useOffsets(ref)
+  useBackgroundColor(COLOR.BLUE_LIGHT, top, bottom)
+  useColor(COLOR.BLACK, top, bottom)
+  useActiveNav('/', top, bottom)
   useScrollIn(inView, entry)
+
   const { showLogo } = useShowLogo(false)
   const { showNav } = useShowNav(false)
 
@@ -32,7 +44,7 @@ export function Home() {
     <>
       <motion.article
         key="Home"
-        ref={ref}
+        ref={setRefs}
         className={s.article}
         initial={{ scale: 1 }}
       >
@@ -45,7 +57,7 @@ export function Home() {
           Hi!
           <br />
           <br />
-          I&apos;m a coder and designer that creates digital things.
+          I&apos;m a freelancing coder and designer. I create digital things.
           <br />
           <br />
           Feel free to browse some of my <Link href="/portfolio">work</Link>,

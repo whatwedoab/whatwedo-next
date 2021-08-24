@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import s from './NavButton.module.scss'
 import { animate, motion, useMotionValue } from 'framer-motion'
-import { useColor } from '../../../services/useColor'
 import { useActiveNav } from '../../../services/useActiveNav'
+import { useAppContext } from '../../../services/App.context'
 
 interface Props {
   label: string
@@ -12,7 +12,7 @@ interface Props {
 
 export function NavButton(props: Props) {
   const { label, href } = props
-  const color = useColor()
+  const { color } = useAppContext()
   const active = useActiveNav()
 
   const [containerElement, setContainerElement] =
@@ -28,23 +28,12 @@ export function NavButton(props: Props) {
     )
   }, [containerElement])
 
-  const isActive = useMemo(() => {
-    if (active === href) {
-      return true
-    }
-    if (
-      href === '/portfolio' &&
-      ['/culinary-canvas', '/algomin', 'fragvist'].includes(active)
-    ) {
-      return true
-    }
-    return false
-  }, [href, active])
+  const isActive = useMemo(() => active === href, [href, active])
 
   const selectedColor = useMotionValue(color)
 
   useEffect(() => {
-    animate(selectedColor, color, { duration: 1 })
+    animate(selectedColor, color, { ease: 'anticipate' })
   }, [selectedColor, color])
 
   return (
@@ -52,6 +41,7 @@ export function NavButton(props: Props) {
       className={s.container}
       ref={(r) => setContainerElement(r)}
       animate={{ color }}
+      transition={{ ease: 'anticipate' }}
     >
       <div className={s.wrapper}>
         {isActive && (

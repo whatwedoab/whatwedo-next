@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import s from './CulinaryCanvas.module.scss'
 import { useWindowSize } from '../../services/useWindowSize'
 import { ImageMosaic } from '../../components/ImageMosaic/ImageMosaic'
@@ -11,6 +11,8 @@ import { useBackgroundColor } from '../../services/useBackgroundColor'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
+import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
+import { useOffsets } from '../../services/useOffsets'
 
 const parallaxImages = [
   {
@@ -30,10 +32,20 @@ const mosaicHrefs = Array.from(new Array(12)).map(
 export default function CulinaryCanvas() {
   const { height } = useWindowSize()
   const [logoLoaded, setLogoLoaded] = useState<boolean>(false)
-  const { ref, inView } = useInView()
-  useBackgroundColor(COLOR.CULINARY_CANVAS.PINK_LIGHT, inView)
-  useColor(COLOR.BLACK, inView)
-  useActiveNav('/portfolio', inView)
+  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
+  const ref = useRef<HTMLElement>()
+
+  const setRefs = useCallback(
+    (node: HTMLElement) => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef],
+  )
+  const { top, bottom } = useOffsets(ref)
+  useBackgroundColor(COLOR.CULINARY_CANVAS.PINK_LIGHT, top, bottom)
+  useColor(COLOR.BLACK, top, bottom)
+  useActiveNav('/portfolio', top, bottom)
 
   const logoVariants: Variants = {
     hidden: { opacity: 0, y: 25 },
@@ -41,7 +53,7 @@ export default function CulinaryCanvas() {
   }
 
   return (
-    <article className={s.article} ref={ref}>
+    <article className={s.article} ref={setRefs}>
       <motion.div
         className={s.triangle}
         initial={{ y: '-100%' }}
@@ -75,22 +87,23 @@ export default function CulinaryCanvas() {
       <Tags
         delay={1.5}
         tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
+        containerClassName={s.tagsContainer}
       />
+
       <section className={s.parallaxContainer}>
         {!!height && <ParallaxImages images={parallaxImages} />}
       </section>
 
+      <h3>The brief</h3>
       <section className={s.contentContainer}>
-        <ImageMosaic hrefs={mosaicHrefs} />
-      </section>
-
-      <section className={s.contentContainer}>
-        <h3>The job</h3>
         <p>
           Culinary Canvas celebrates the creativity of culinary and beverage
           professionals around the world. High-end editorial content with
           vibrant and eye-catching photography.
         </p>
+      </section>
+
+      <section className={s.columnContentContainer}>
         <h4>Logo</h4>
         <p>
           A modern brand, with lots of space for creativity. The lower stripe in
@@ -124,16 +137,21 @@ export default function CulinaryCanvas() {
             stack and the technical solution.
           </i>
         </p>
-        <p>
-          <a
-            href="https://culinary-canvas.com"
-            title="Culinary Canvas"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://culinary-canvas.com
-          </a>
-        </p>
+      </section>
+
+      <h3>
+        <a
+          href="https://culinary-canvas.com"
+          title="Culinary Canvas"
+          target="_blank"
+          rel="noreferrer"
+        >
+          culinary-canvas.com
+        </a>
+      </h3>
+
+      <section className={s.contentContainer}>
+        <ImageMosaic hrefs={mosaicHrefs} />
       </section>
     </article>
   )

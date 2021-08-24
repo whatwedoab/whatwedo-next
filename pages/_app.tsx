@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { AppContext, useAppContextInit } from '../services/App.context'
 import { COLOR } from '../styles/COLOR'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -25,17 +26,29 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AppContext.Provider value={appContext}>
+      <Head>
+        <title>What we do</title>
+        <meta name="keywords" content="Web design, logo" />
+        <meta
+          name="description"
+          content="We do web pages, applications and graphic design"
+        />
+        <meta
+          name="viewport"
+          key="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+        />
+      </Head>
+      <Header />
+      <Nav />
       <AnimatePresence>
         <motion.main
           key={router.asPath}
           animate={{
-            backgroundColor: appContext.backgroundColor,
             color: appContext.color,
           }}
           transition={{ ease: 'anticipate' }}
         >
-          <Header />
-          <Nav />
           <Component {...pageProps} />
         </motion.main>
       </AnimatePresence>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import s from './Algomin.module.scss'
 import { useWindowSize } from '../../services/useWindowSize'
 import { ImageMosaic } from '../../components/ImageMosaic/ImageMosaic'
@@ -16,6 +16,8 @@ import { useInView } from 'react-intersection-observer'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
+import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
+import { useOffsets } from '../../services/useOffsets'
 
 const parallaxImages = [
   {
@@ -35,10 +37,20 @@ const mosaicHrefs = Array.from(new Array(6)).map(
 export default function Algomin() {
   const { height } = useWindowSize()
   const [mockupLoaded, setMockupLoaded] = useState<boolean>(false)
-  const { ref, inView } = useInView()
-  useBackgroundColor(COLOR.WHITE, inView)
-  useColor(COLOR.BLACK, inView)
-  useActiveNav('/portfolio', inView)
+  const [inViewRef, inView] = useInView(PAGE_IN_VIEW_OPTIONS)
+  const ref = useRef<HTMLDivElement>()
+
+  const setRefs = useCallback(
+    (node: HTMLDivElement) => {
+      ref.current = node
+      inViewRef(node)
+    },
+    [inViewRef],
+  )
+  const { top, bottom } = useOffsets(ref)
+  useBackgroundColor(COLOR.WHITE, top, bottom)
+  useColor(COLOR.ALGOMIN.BLUE, top, bottom)
+  useActiveNav('/portfolio', top, bottom)
   const { scrollYProgress } = useViewportScroll()
 
   useEffect(() => scrollYProgress.onChange(console.log), [scrollYProgress])
@@ -59,7 +71,7 @@ export default function Algomin() {
   return (
     <>
       <motion.div
-        ref={ref}
+        ref={setRefs}
         className={s.backgroundMockup}
         initial="hidden"
         animate={mockupLoaded ? 'visible' : 'hidden'}
@@ -136,30 +148,20 @@ export default function Algomin() {
           transition={{ duration: 3, ease: 'anticipate' }}
           variants={nameVariants}
         >
-          <a
-            href="https://www.algomin.se"
-            title="Algomin"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <h1>Algomin</h1>
-          </a>
+          <h1>Algomin</h1>
+          <Tags
+            containerClassName={s.tagsContainer}
+            delay={1.5}
+            tags={['web design', 'responsive']}
+          />
         </motion.section>
 
-        <Tags
-          containerClassName={s.tagsContainer}
-          delay={1.5}
-          tags={['web design', 'responsive']}
-        />
-
-        {!!height && <ParallaxImages images={parallaxImages} />}
-
-        <section className={s.contentContainer}>
-          <ImageMosaic hrefs={mosaicHrefs} columns={3} />
+        <section className={s.parallaxContainer}>
+          {!!height && <ParallaxImages images={parallaxImages} />}
         </section>
 
+        <h3>The brief</h3>
         <section className={s.contentContainer}>
-          <h3>The job</h3>
           <p>
             Algomin is a leading, environment friendly producer of soil
             improvement and fertilizer, sold in stores across the nordic
@@ -174,16 +176,19 @@ export default function Algomin() {
             new water drop inspired graphical element (water is an important
             component in Algomin&apos;s products and branding)
           </p>
-          <p>
-            <a
-              href="https://www.algomin.se"
-              title="Algomin.se"
-              target="_blank"
-              rel="noreferrer"
-            >
-              https://www.algomin.se
-            </a>
-          </p>
+        </section>
+        <h3>
+          <a
+            href="https://www.algomin.se"
+            title="Algomin.se"
+            target="_blank"
+            rel="noreferrer"
+          >
+            www.algomin.se
+          </a>
+        </h3>
+        <section className={s.mosaicContainer}>
+          <ImageMosaic hrefs={mosaicHrefs} columns={3} />
         </section>
       </article>
     </>

@@ -1,5 +1,6 @@
 @import '../styles/font';
 @import '../styles/layout';
+@import '../styles/color';
 
 .logoContainer {
   position: absolute;
@@ -10,19 +11,34 @@
 }
 
 .article {
+  @include articleLayout();
   flex-direction: row;
   width: 100vw;
+
+  @media all and (min-width: 841px) {
+    padding-bottom: 0;
+  }
+  @media all and (max-width: 840px) {
+    flex-direction: column;
+  }
+  background-color: $blueLight;
+  color: $black;
 }
 
 .h1 {
-  font-family: $formaDisplay;
   position: relative;
   z-index: 20;
-  width: 55vw;
-  padding-right: 2rem;
   margin: 0;
-  font-size: 5vmin;
+  font-family: $formaDisplay;
+  font-size: 3rem;
   font-weight: 600;
+
+  @media all and (min-width: 841px) {
+    width: 55vw;
+  }
+  @media all and (max-width: 840px) {
+    font-size: 2rem;
+  }
 }
 
 .carouselContainer {

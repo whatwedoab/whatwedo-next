@@ -6,6 +6,12 @@ import { useShowNav } from '../../services/useShowNav'
 
 export function Nav() {
   const { navVisible } = useShowNav()
+  /*
+  const { headerColors } = useAppContext()
+  const { scrollY } = useViewportScroll()
+  const [currentScrollY, setCurrentScrollY] = useState<number>()
+  useEffect(() => scrollY.onChange((v) => setCurrentScrollY(v)), [scrollY])
+*/
 
   const variants = {
     hidden: {
@@ -19,15 +25,28 @@ export function Nav() {
   return (
     <AnimateSharedLayout>
       <motion.nav
-        className={s.nav}
+        className={s.desktopNav}
         initial="hidden"
         animate={navVisible ? 'visible' : 'hidden'}
         variants={variants}
         transition={{ duration: 1, ease: 'anticipate' }}
       >
         <NavButton label="Start" href="/" />
+        {/*<motion.div
+          className={s.buttonContainer}
+          style={{
+            color: headerColors[0]?.color,
+            maxHeight: !!currentScrollY
+              ? currentScrollY + HEADER_HEIGHT - headerColors[0]?.boundary
+              : 0,
+          }}
+        >
+          <div className={s.buttonWrapper}>
+            <NavButton label="Start" href="/" />
+          </div>
+        </motion.div>*/}
         <NavButton label="Portfolio" href="/portfolio" />
-        <NavButton label="Pricing" href="/pricing" />
+        <NavButton label="Services" href="/services" />
         <NavButton label="About" href="/about" />
         <NavButton label="Contact" href="/contact" />
       </motion.nav>

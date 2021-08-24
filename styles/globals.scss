@@ -1,3 +1,5 @@
+@import '../public/assets/fonts/biko.css';
+@import '../public/assets/style/normalize.css';
 @import './font';
 @import './layout';
 
@@ -20,6 +22,8 @@ article {
 }
 
 a {
+  color: inherit;
+
   &:hover {
     opacity: 0.7;
   }
