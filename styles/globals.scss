@@ -30,22 +30,21 @@ a {
 }
 
 h1 {
-  @include h1Font();
+  @include h1();
 }
 
 h2 {
-  @include h2Font();
+  @include h2();
 }
 
 h3 {
-  @include h3Font();
+  @include h3();
 }
 
 h4 {
-  @include h4Font();
+  @include h4();
 }
 
 p {
-  @include pLayout();
-  @include pFont();
+  @include p();
 }

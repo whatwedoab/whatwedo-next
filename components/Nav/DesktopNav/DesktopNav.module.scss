@@ -11,7 +11,7 @@
   display: flex;
   z-index: 100;
   align-items: center;
-  height: $desktopHeaderHeight;
+  height: $lHeaderHeight;
 
   a {
     color: inherit;
@@ -26,7 +26,7 @@
   display: flex;
   z-index: 100;
   align-items: center;
-  height: $desktopHeaderHeight;
+  height: $lHeaderHeight;
 
   a {
     color: inherit;
@@ -40,7 +40,7 @@
   align-items: center;
   align-self: flex-end;
   width: 100px;
-  height: $desktopHeaderHeight;
+  height: $lHeaderHeight;
   overflow: hidden;
 
   .buttonWrapper {
@@ -49,6 +49,6 @@
     display: flex;
     align-items: center;
     width: 100px;
-    height: $desktopHeaderHeight;
+    height: $lHeaderHeight;
   }
 }

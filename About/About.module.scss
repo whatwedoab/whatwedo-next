@@ -9,9 +9,7 @@
 }
 
 .gridContainer {
-  position: relative;
-
-  @media all and (min-width: 841px) {
+  @media (min-width: $lMin) {
     display: grid;
     grid-template:
       [row1-start] 'left right' auto [row1-end]
@@ -20,7 +18,8 @@
     gap: 2rem;
   }
 
-  @media all and (max-width: 840px) {
+  @media (max-width: $sMax) {
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     p {
@@ -33,11 +32,10 @@
   }
 
   p {
-    font-family: $neueText;
-    @media all and (min-width: 841px) {
-      font-size: 3rem;
+    @media (min-width: $lMin) {
+      font-size: 2.5rem;
     }
-    @media all and (max-width: 840px) {
+    @media (max-width: $sMax) {
       font-size: 2rem;
     }
     font-weight: 600;
@@ -69,26 +67,20 @@
 }
 
 .footerContainer {
+  padding: 0 2rem;
   hr {
-    @media all and (min-width: 841px) {
-      margin: 2rem;
-    }
-    @media all and (max-width: 840px) {
-      margin: 2rem 0;
-    }
+    margin: 2rem 0;
     border-style: solid;
     border-width: 2px;
   }
-  .keyWordsContainer {
+  ul {
     display: flex;
     flex-wrap: wrap;
+    padding: 0;
     text-transform: uppercase;
     font-family: $biko;
     font-weight: 400;
+    list-style-type: none;
     gap: 1rem;
-
-    @media all and (min-width: 841px) {
-      padding: 0 2rem;
-    }
   }
 }

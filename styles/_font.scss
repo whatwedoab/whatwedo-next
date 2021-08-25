@@ -1,3 +1,5 @@
+@import './layout';
+
 $formaDisplay: forma-djr-display, sans-serif;
 $neueDisplay: neue-haas-grotesk-display, sans-serif;
 $neueText: neue-haas-grotesk-text, sans-serif;
@@ -22,28 +24,28 @@ $biko: biko, sans-serif;
   line-height: 1.15;
 }
 
-@mixin h1Font() {
+@mixin h1() {
   font-family: $formaDisplay;
-  font-size: 4.5rem;
+  font-size: 4rem;
   font-weight: 600;
 
-  @media all and (max-width: 840px) {
+  @media (max-width: $sMax) {
     text-align: center;
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 
-@mixin h2Font() {
+@mixin h2() {
   font-family: $formaDisplay;
   font-size: 3.5rem;
   font-weight: 600;
 
   @media all and (max-width: 840px) {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 
-@mixin h3Font() {
+@mixin h3() {
   font-size: 3rem;
   font-weight: 600;
 
@@ -52,7 +54,7 @@ $biko: biko, sans-serif;
   }
 }
 
-@mixin h4Font() {
+@mixin h4() {
   padding-bottom: 0;
   margin-bottom: 0;
   text-transform: uppercase;
@@ -60,6 +62,8 @@ $biko: biko, sans-serif;
   font-weight: 900;
 }
 
-@mixin pFont() {
+@mixin p() {
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
   font-weight: 300;
 }

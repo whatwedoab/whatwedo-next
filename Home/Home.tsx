@@ -3,7 +3,6 @@ import s from './Home.module.scss'
 import { ImageCarousel } from '../components/ImageCarousel/ImageCarousel'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { Logo } from '../components/Logo/Logo'
 import { useScrollIn } from '../services/useScrollIn'
 import { useColor } from '../services/useColor'
@@ -54,15 +53,7 @@ export function Home() {
           transition={{ ease: 'anticipate' }}
           className={s.h1}
         >
-          Hi!
-          <br />
-          <br />
-          I&apos;m a freelancing coder and designer. I create digital things.
-          <br />
-          <br />
-          Feel free to browse some of my <Link href="/portfolio">work</Link>,
-          read more <Link href="/about">about me</Link> or{' '}
-          <Link href="/contact">get in touch</Link>.
+          Hi. I&apos;m a developer and designer. Available for hire.
         </motion.h1>
 
         <motion.section
@@ -83,6 +74,7 @@ export function Home() {
           />
         </motion.section>
       </motion.article>
+
       <motion.div
         className={s.logoContainer}
         initial={{ opacity: 1 }}

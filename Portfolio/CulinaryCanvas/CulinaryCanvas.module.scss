@@ -16,7 +16,7 @@
   color: $black;
 
   @media all and (max-width: 840px) {
-    margin-top: -$mobileHeaderHeight;
+    margin-top: -$sHeaderHeight;
   }
 
   h3 {

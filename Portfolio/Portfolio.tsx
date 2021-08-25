@@ -7,9 +7,11 @@ import { useBackgroundColor } from '../services/useBackgroundColor'
 import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
 import { COLOR } from '../styles/COLOR'
-import { MorePortfolioItem } from './MorePortfolioItem/MorePortfolioItem'
 import { useOffsets } from '../services/useOffsets'
 import { useScrollIn } from '../services/useScrollIn'
+import { Tags } from '../components/Tags/Tags'
+import { Image } from '../components/Image/Image'
+import AppWindowNext from '@streamlinehq/streamlinehq/img/streamline-regular/programing-apps-websites/apps-window/app-window-next.svg'
 
 export default function Portfolio() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
@@ -33,7 +35,15 @@ export default function Portfolio() {
       <h1>Portfolio</h1>
       <PortfolioItem
         name="Culinary Canvas"
-        tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
+        tags={[
+          'logo',
+          'branding',
+          'web design',
+          'web development',
+          'Custom CMS',
+          'React',
+          'Firebase',
+        ]}
         imageSrc="/assets/culinary-canvas-magazine.jpg"
         href="/culinary-canvas"
       />
@@ -50,42 +60,88 @@ export default function Portfolio() {
         href="/fragvist"
       />
 
-      <section className={s.otherContainer}>
-        <h2>More</h2>
+      <h2>More</h2>
 
-        <MorePortfolioItem
-          name="Lavendo"
-          linkName="lavendo.se"
-          href="https://www.lavendo.se"
-          description="Web design and setup in Wordpress"
-          tags={['web design', 'wordpress']}
-          image="/assets/portfolio-lavendo.jpg"
-        />
+      <PortfolioItem
+        small
+        name="Lavendo"
+        href="https://www.lavendo.se"
+        tags={['web design', 'wordpress']}
+        imageSrc="/assets/portfolio-lavendo.jpg"
+      />
 
-        <MorePortfolioItem
-          name="Strukturator"
-          linkName="strukturator.se"
-          href="https://www.strukturator.se"
-          description="Logo, animations and web design. Setup in Wordpress using Elementor"
-          tags={['web design', 'wordpress', 'elementor', 'logo']}
-          image="/assets/portfolio-strukturator.jpg"
-        />
+      <PortfolioItem
+        small
+        name="Strukturator"
+        href="https://www.strukturator.se"
+        tags={['web design', 'wordpress', 'elementor', 'logo']}
+        imageSrc="/assets/portfolio-strukturator.jpg"
+      />
 
-        <MorePortfolioItem
-          name="Calou"
-          linkName="calou.se"
-          href="https://www.strukturator.se"
-          description="Setup email marketing automation in Kalviyo for Calou's Shopify web shop. 'In stock', 'Review', 'Thank you' and 'Welcome'-flows."
-          tags={[
-            'Email marketing',
-            'Automation',
-            'Email design',
-            'Klaviyo',
-            'Shopify',
-          ]}
-          image="/assets/portfolio-calou.jpg"
-        />
-      </section>
+      <PortfolioItem
+        small
+        name="Calou"
+        href="https://www.strukturator.se"
+        tags={[
+          'Email marketing',
+          'Automation',
+          'Email design',
+          'Klaviyo',
+          'Shopify',
+        ]}
+        imageSrc="/assets/portfolio-calou.jpg"
+      />
+
+      <ul>
+        <li>
+          <h4>
+            Abalon Relevate
+            <a href="https://www.abalon.se" target="_blank" rel="noreferrer">
+              <Image
+                src={AppWindowNext}
+                alt="Abalon web site"
+                width={20}
+                height={20}
+                objectPosition="bottom center"
+              />
+            </a>
+          </h4>
+          <Tags
+            tags={[
+              'enterprise web application',
+              'Management',
+              'UI design',
+              're-branding',
+              'angularjs',
+              'java',
+              'mssql',
+              'CRM',
+              'DM automation',
+            ]}
+          />
+        </li>
+        <li>
+          <h4>
+            GMP 365™
+            <a
+              href="https://www.gmp-systems.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src={AppWindowNext}
+                alt="Gmp Systems web site"
+                width={20}
+                height={20}
+                objectPosition="bottom center"
+              />
+            </a>
+          </h4>
+          <Tags
+            tags={['enterprise web application', 'angular', 'java', 'mongoDb']}
+          />
+        </li>
+      </ul>
     </article>
   )
 }

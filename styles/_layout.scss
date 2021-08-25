@@ -1,52 +1,48 @@
-$desktopHeaderHeight: 100px;
-$mobileHeaderHeight: 60px;
+$lHeaderHeight: 100px;
+$sHeaderHeight: 60px;
+$sMax: 840px;
+$lMin: 841px;
+$sContentWidth: 100vw;
+$lContentWidth: 900px;
 
 @mixin headerHeight() {
-  @media all and (max-width: 840px) {
-    height: $mobileHeaderHeight;
+  @media (max-width: $lMin) {
+    height: $sHeaderHeight;
   }
 
-  @media all and (min-width: 841px) {
-    height: $desktopHeaderHeight;
+  @media (min-width: $lMin) {
+    height: $lHeaderHeight;
   }
 }
 
 @mixin bodyLayout() {
   width: 100vw;
+  min-height: 100vh;
   margin: 0;
 }
 
 @mixin mainLayout() {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0;
+  margin: 0;
+  @media (min-width: $lMin) {
+    padding-top: $lHeaderHeight;
+  }
 
-  @media all and (max-width: 840px) {
-    justify-content: center;
-    padding-top: $mobileHeaderHeight;
+  @media (max-width: $sMax) {
+    padding-top: $sHeaderHeight;
   }
 }
 
 @mixin articleLayout() {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100vw;
-  min-height: 100vh;
   margin: 0;
 
-  @media all and (min-width: 841px) {
-    justify-content: flex-start;
-    padding: 2rem 10vw 10vh;
+  @media (min-width: $lMin) {
+    min-height: calc(100vh - #{$lHeaderHeight});
+    padding: 2rem calc((100vw - #{$lContentWidth}) / 2);
   }
-  @media all and (max-width: 840px) {
-    justify-content: center;
-    padding: 1rem;
-  }
-}
 
-@mixin pLayout() {
-  margin-top: 0.25rem;
-  margin-bottom: 2rem;
+  @media (max-width: $sMax) {
+    min-height: calc(100vh - #{$sHeaderHeight});
+    padding: 1rem calc((100vw - #{$sContentWidth}) / 2);
+  }
 }

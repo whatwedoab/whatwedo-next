@@ -18,16 +18,15 @@ export function Service(props: Props) {
         <span>{name}</span>
       </h2>
 
+      <span className={s.price}>{price}</span>
+
       <ul>
         {content.map((c) => (
           <li key={c}>{c}</li>
         ))}
       </ul>
 
-      <div className={s.ctaContainer}>
-        <span className={s.price}>{price}</span>
-        <MailtoButton subject={mailtoSubject} className={s.mailtoButton} />
-      </div>
+      <MailtoButton subject={mailtoSubject} className={s.mailtoButton} />
     </div>
   )
 }

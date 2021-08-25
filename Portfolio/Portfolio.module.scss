@@ -4,18 +4,52 @@
 .article {
   @include articleLayout();
   background-color: $white;
-}
+  color: $black;
 
-.otherContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  ul {
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+
+      @media (max-width: $sMax) {
+        padding: 0 1rem;
+      }
+      @media (min-width: $lMin) {
+        justify-content: center;
+        align-items: center;
+        * {
+          justify-content: center;
+        }
+      }
+    }
+  }
 
   h2 {
     width: 100%;
     text-align: center;
-    @media all and (max-width: 840px) {
+    @media (max-width: $sMax) {
       margin-top: 0;
+    }
+  }
+
+  h4 {
+    margin: 1rem 0;
+    text-transform: none;
+    font-size: 1.2rem;
+
+    @media (min-width: $lMin) {
+      margin: 1rem 0 1rem 20px;
+    }
+
+    a {
+      position: relative;
+      bottom: -4px;
+      display: inline-block;
+      margin-left: 1rem;
     }
   }
 }

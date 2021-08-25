@@ -75,24 +75,6 @@ export function Services() {
 
         <motion.div className={s.packageContainer} variants={variants}>
           <Service
-            name="Custom web site"
-            content={[
-              'Web design',
-              'Responsive',
-              'CMS',
-              'SEO',
-              'Hosting setup',
-              'Domain setup',
-              'Advanced pages & features',
-              '+ more',
-            ]}
-            price="By request"
-            mailtoSubject="Custom web site inquiry"
-          />
-        </motion.div>
-
-        <motion.div className={s.packageContainer} variants={variants}>
-          <Service
             name="Logo"
             content={[
               '2 revisions',
@@ -105,59 +87,6 @@ export function Services() {
             ]}
             price="$1,500"
             mailtoSubject="Logo inquiry"
-          />
-        </motion.div>
-
-        <motion.div className={s.packageContainer} variants={variants}>
-          <Service
-            name="Visual brand identity"
-            content={[
-              'Logo',
-              'Web design',
-              'Graphical assets',
-              'Typography',
-              'Colors',
-              'Guidelines',
-              'Multiple revisions',
-              '+ more',
-            ]}
-            price="By request"
-            mailtoSubject="Visual brand identity inquiry"
-          />
-        </motion.div>
-
-        <motion.div className={s.packageContainer} variants={variants}>
-          <Service
-            name="Mobile App"
-            content={[
-              'Visual identity',
-              'UI Design',
-              'Android & iOS',
-              'Authentication',
-              'Cloud storage',
-              'React Native',
-              '+ more',
-            ]}
-            price="By request"
-            mailtoSubject="Mobile app inquiry"
-          />
-        </motion.div>
-
-        <motion.div className={s.packageContainer} variants={variants}>
-          <Service
-            name="Web app"
-            content={[
-              'Visual identity',
-              'UI Design',
-              'Authentication',
-              'Cloud storage',
-              'Front end',
-              'Back end',
-              'Database',
-              '+ more',
-            ]}
-            price="By request"
-            mailtoSubject="Web application inquiry"
           />
         </motion.div>
 
@@ -189,6 +118,17 @@ export function Services() {
           />
         </motion.div>
       </section>
+      <h2>More</h2>
+      <p>
+        These services vary in size depending on your needs.{' '}
+        <Link href="/contact">Contact me</Link> to get a quote.
+      </p>
+      <ul>
+        <li>Advanced web site</li>
+        <li>Mobile app</li>
+        <li>Web app</li>
+        <li>Visual brand identity</li>
+      </ul>
     </motion.article>
   )
 }

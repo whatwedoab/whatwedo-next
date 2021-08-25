@@ -1,22 +1,34 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Tags } from '../../components/Tags/Tags'
 import s from './PortfolioItem.module.scss'
 import { motion, useTransform, useViewportScroll } from 'framer-motion'
 import Link from 'next/link'
 import { Image } from '../../components/Image/Image'
+import AppWindowNext from '@streamlinehq/streamlinehq/img/streamline-regular/programing-apps-websites/apps-window/app-window-next.svg'
 
 interface Props {
   name: string
   tags: string[]
   imageSrc: string
   href: string
+  small?: boolean
 }
 
 export function PortfolioItem(props: Props) {
-  const { name, tags, imageSrc, href } = props
+  const { name, tags, imageSrc, href, small = false } = props
   const ref = useRef<HTMLElement>(null)
   const { scrollY } = useViewportScroll()
   const [offsetTop, setOffsetTop] = useState(0)
+
+  const external = useMemo(() => href.includes('http'), [href])
+
+  const containerClassNames = useMemo(() => {
+    const classNames = [s.container]
+    if (small) {
+      classNames.push(s.small)
+    }
+    return classNames.join(' ')
+  }, [small])
 
   useEffect(() => {
     if (!!ref.current) {
@@ -30,17 +42,10 @@ export function PortfolioItem(props: Props) {
     ['-10%', '10%'],
   )
 
-  const [hovering, setHovering] = useState<boolean>(false)
-
   return (
     <>
       <Link href={href}>
-        <motion.section
-          ref={ref}
-          className={s.container}
-          onMouseOver={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
-        >
+        <motion.section ref={ref} className={containerClassNames}>
           <div className={s.imageContainer}>
             <motion.div className={s.imageWrapper} style={{ y: imageY }}>
               <Image
@@ -54,19 +59,24 @@ export function PortfolioItem(props: Props) {
                 priority
               />
             </motion.div>
-            <motion.div
-              className={s.imageCover}
-              initial={{ borderRadius: 0, scale: 0 }}
-              animate={
-                hovering
-                  ? { borderRadius: 999, scale: 1 }
-                  : { borderRadius: 0, scale: 0 }
-              }
-            />
+            {!external && <div className={s.imageHoverEffect} />}
           </div>
 
           <div className={s.textContainer}>
-            <h3>{name}</h3>
+            <h3>
+              {name}
+              {external && (
+                <a href={href} target="_blank" rel="noreferrer">
+                  <Image
+                    src={AppWindowNext}
+                    alt={`${name} web site`}
+                    width={20}
+                    height={20}
+                    objectPosition="bottom center"
+                  />
+                </a>
+              )}
+            </h3>
             <Tags tags={tags} containerClassName={s.tagsContainer} />
           </div>
         </motion.section>

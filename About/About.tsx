@@ -1,10 +1,7 @@
 import React, { useCallback, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
-import { useBackgroundColor } from '../services/useBackgroundColor'
-import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
-import { COLOR } from '../styles/COLOR'
 import s from './About.module.scss'
 import { Image } from '../components/Image/Image'
 import Link from 'next/link'
@@ -22,8 +19,8 @@ export function About() {
     [inViewRef],
   )
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.CORAL, top, bottom)
-  useColor(COLOR.YELLOW_LIGHT, top, bottom)
+  // useBackgroundColor(COLOR.CORAL, top, bottom)
+  // useColor(COLOR.YELLOW_LIGHT, top, bottom)
   useActiveNav('/about', top, bottom)
 
   return (
@@ -61,26 +58,24 @@ export function About() {
 
       <section className={s.footerContainer}>
         <hr />
-
-        <div className={s.keyWordsContainer}>
-          <span>Graphics</span>
-          <span>Logo</span>
-          <span>Web</span>
-          <span>App</span>
-          <span>Angular</span>
-          <span>CMS</span>
-          <span>React</span>
-          <span>React Native</span>
-          <span>Visualisation</span>
-          <span>Email marketing</span>
-          <span>Marketing automation</span>
-        </div>
+        <ul className={s.keyWordsContainer}>
+          <li>Graphics</li>
+          <li>Logo</li>
+          <li>Web</li>
+          <li>App</li>
+          <li>Angular</li>
+          <li>CMS</li>
+          <li>React</li>
+          <li>React Native</li>
+          <li>Visualisation</li>
+          <li>Email marketing</li>
+          <li>Marketing automation</li>
+        </ul>
         <hr />
-
-        <div className={s.keyWordsContainer}>
-          <span>Stockholm, Sweden</span>
-          <span>Remote</span>
-        </div>
+        <ul className={s.keyWordsContainer}>
+          <li>Stockholm, Sweden</li>
+          <li>Remote</li>
+        </ul>
       </section>
     </article>
   )

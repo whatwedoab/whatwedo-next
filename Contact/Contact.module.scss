@@ -12,27 +12,34 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-size: 2rem;
-  @media all and (max-width: 840px) {
-    grid-template-columns: 1fr;
-    font-size: 1.5rem;
-  }
   font-weight: 600;
   gap: 2rem;
+
+  @media (max-width: $sMax) {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+  }
 
   a {
     color: inherit;
   }
+
   ul {
     padding: 0;
     list-style-type: none;
-  }
-  li {
-    height: 3rem;
-    a {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: flex-start;
+
+    li {
+      height: 3rem;
+      a {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        @media (max-width: $sMax) {
+          justify-content: center;
+        }
+      }
     }
   }
 }
