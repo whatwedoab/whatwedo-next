@@ -29,8 +29,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
   useEffect(() => {
-    setTimeout(() => appContext.showLogo(true), 3000)
-    setTimeout(() => appContext.showNav(true), 2000)
+    setTimeout(() => appContext.showLogo(true), 500)
+    setTimeout(() => appContext.showNav(true), 1000)
   }, [appContext])
 
   return (

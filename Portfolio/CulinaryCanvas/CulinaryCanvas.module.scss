@@ -4,7 +4,8 @@
 
 .article {
   @include articleLayout();
-  position: relative;
+  position: absolute;
+  top:0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

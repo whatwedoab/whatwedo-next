@@ -6,6 +6,9 @@ import s from './About.module.scss'
 import { Image } from '../components/Image/Image'
 import Link from 'next/link'
 import { useOffsets } from '../services/useOffsets'
+import { useColor } from '../services/useColor'
+import { COLOR } from '../styles/COLOR'
+import { useBackgroundColor } from '../services/useBackgroundColor'
 
 export function About() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
@@ -19,8 +22,8 @@ export function About() {
     [inViewRef],
   )
   const { top, bottom } = useOffsets(ref)
-  // useBackgroundColor(COLOR.CORAL, top, bottom)
-  // useColor(COLOR.YELLOW_LIGHT, top, bottom)
+  useBackgroundColor(COLOR.CORAL, top, bottom)
+  useColor(COLOR.YELLOW_LIGHT, top, bottom)
   useActiveNav('/about', top, bottom)
 
   return (

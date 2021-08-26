@@ -1,55 +1,50 @@
 @import '../styles/color';
 @import '../styles/layout';
+@import '../styles/font';
 
 .article {
   @include articleLayout();
+  padding-right: 0 !important;
+  padding-left: 0 !important;
   background-color: $white;
   color: $black;
 
+  h1 {
+    @include pageHorizontalPadding();
+  }
+}
+.moreContainer {
+  padding: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  @include pageHorizontalMargin();
+
   ul {
-    padding: 0;
     list-style-type: none;
-
     li {
-      display: flex;
-      flex-direction: column;
-      margin-top: 2rem;
+      margin: 2rem 0;
 
-      @media (max-width: $sMax) {
-        padding: 0 1rem;
+      a {
+        text-decoration: none;
       }
-      @media (min-width: $lMin) {
-        justify-content: center;
-        align-items: center;
-        * {
-          justify-content: center;
+
+      h3 {
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+        @media (max-width: $sMax) {
+          font-size: 1.5rem;
+        }
+
+        div {
+          display: inline-block;
+          margin-left: 0.5rem;
         }
       }
     }
   }
+}
 
-  h2 {
-    width: 100%;
-    text-align: center;
-    @media (max-width: $sMax) {
-      margin-top: 0;
-    }
-  }
-
-  h4 {
-    margin: 1rem 0;
-    text-transform: none;
-    font-size: 1.2rem;
-
-    @media (min-width: $lMin) {
-      margin: 1rem 0 1rem 20px;
-    }
-
-    a {
-      position: relative;
-      bottom: -4px;
-      display: inline-block;
-      margin-left: 1rem;
-    }
-  }
+.section {
+  display: flex;
+  flex-direction: column;
 }

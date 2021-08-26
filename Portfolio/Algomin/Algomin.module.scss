@@ -15,29 +15,153 @@
   color: $algominBlue;
 }
 
+.textContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  grid-auto-flow: row;
+  height: 100%;
+  margin: 1rem 0;
+  font-size: 2rem;
+  font-weight: 900;
+  column-count: 1;
+  @media (min-width: $lMin) {
+    width: 50%;
+    min-width: 500px;
+  }
+  @media (max-width: $sMax) {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  p {
+    flex: 1;
+    margin: 1rem;
+  }
+}
+
+@mixin imageContainer() {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mockup1Container {
+  @include imageContainer();
+  @include contentWidth();
+  @include contentHeight(0.562727746);
+}
+
+.mockup2Container {
+  @include imageContainer();
+  display: flex;
+  @media (min-width: $lMin) {
+    width: calc(100vw - 2rem);
+    height: calc(100vw * 0.35);
+  }
+
+  @media (max-width: $sMax) {
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100vw * 2);
+  }
+
+  div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0.5rem;
+    overflow: hidden;
+  }
+}
+
 .backgroundMockup {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  animation: revealAndDim 1s forwards;
   overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    @media (max-width: $sMax) {
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0.5) 40%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: scaleY(0);
+      transform-origin: bottom;
+      animation: gradientIn 2s 1s forwards;
+    }
+  }
+
+  @keyframes gradientIn {
+    0% {
+      transform: scaleY(0);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+}
+
+@keyframes revealAndDim {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .blobb1 {
   position: absolute;
   top: 110vh;
   left: -1rem;
-  width: 40vw;
-  height: 40vw;
+  width: 30vmax;
+  height: 30vmax;
+  animation: blobb 15s infinite alternate;
 }
 
 .blobb2 {
   position: absolute;
   top: 170vh;
   left: 50vw;
-  width: 50vw;
-  height: 50vw;
+  width: 40vmax;
+  height: 40vmax;
+  animation: blobb 15s 10s infinite alternate;
+}
+
+.blobb3 {
+  position: absolute;
+  top: 400vh;
+  left: 10vw;
+  width: 40vmax;
+  height: 40vmax;
+  animation: blobb 15s 10s infinite alternate;
+}
+
+@keyframes blobb {
+  0% {
+    transform: rotateZ(0) rotateZ(0) scaleX(1);
+  }
+  50% {
+    transform: rotateZ(5deg) rotateZ(-30deg) scaleX(0.9);
+  }
+  100% {
+    transform: rotateZ(50deg) rotateZ(-20deg) scaleX(1.2);
+  }
 }
 
 .nameContainer {
@@ -47,35 +171,17 @@
   flex-direction: column;
   justify-content: center;
   align-self: flex-start;
+  width: 100%;
   height: 100vh;
-
   h1 {
     margin: 0;
   }
 
-  @media all and (max-width: 840px) {
+  @media (min-width: $lMin) {
+    padding-right: 50%;
+  }
+  @media (max-width: $sMax) {
+    align-items: center;
     align-self: center;
   }
-}
-
-.mosaicContainer {
-  width: 100%;
-  max-width: 1200px;
-  margin: 10vh 0;
-  background-color: #fff399;
-}
-
-.parallaxContainer {
-  display: flex;
-  width: 100%;
-  margin: 5vh 0;
-}
-
-.contentContainer {
-  position: relative;
-  grid-auto-flow: row;
-  width: 100%;
-  height: 100%;
-  max-width: 900px;
-  column-count: 2;
 }

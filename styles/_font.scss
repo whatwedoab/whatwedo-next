@@ -1,7 +1,6 @@
 @import './layout';
 
 $formaDisplay: forma-djr-display, sans-serif;
-$neueDisplay: neue-haas-grotesk-display, sans-serif;
 $neueText: neue-haas-grotesk-text, sans-serif;
 $biko: biko, sans-serif;
 
@@ -26,8 +25,8 @@ $biko: biko, sans-serif;
 
 @mixin h1() {
   font-family: $formaDisplay;
-  font-size: 4rem;
-  font-weight: 600;
+  font-size: 5rem;
+  font-weight: 700;
 
   @media (max-width: $sMax) {
     text-align: center;
@@ -65,5 +64,4 @@ $biko: biko, sans-serif;
 @mixin p() {
   margin-top: 0.25rem;
   margin-bottom: 2rem;
-  font-weight: 300;
 }

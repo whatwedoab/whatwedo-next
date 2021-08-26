@@ -53,8 +53,9 @@ export default function CulinaryCanvas() {
   }
 
   return (
-    <article className={s.article} ref={setRefs}>
+    <motion.article className={s.article} ref={setRefs}>
       <motion.div
+        layoutId="triangle"
         className={s.triangle}
         initial={{ y: '-100%' }}
         animate={{ y: 0 }}
@@ -153,6 +154,6 @@ export default function CulinaryCanvas() {
       <section className={s.contentContainer}>
         <ImageMosaic hrefs={mosaicHrefs} />
       </section>
-    </article>
+    </motion.article>
   )
 }

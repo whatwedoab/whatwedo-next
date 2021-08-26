@@ -3,7 +3,6 @@ import s from './Services.module.scss'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { useScrollIn } from '../services/useScrollIn'
 import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
 import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
@@ -27,7 +26,6 @@ export function Services() {
   useBackgroundColor(COLOR.GREY_LIGHTEST, top, bottom)
   useColor(COLOR.BLUE, top, bottom)
   useActiveNav('/services', top, bottom)
-  useScrollIn(inView, entry)
 
   const articleVariants = {
     hidden: { opacity: 1 },

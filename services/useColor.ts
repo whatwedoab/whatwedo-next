@@ -1,6 +1,7 @@
-import { MOBILE_HEADER_HEIGHT, useAppContext } from './App.context'
+import { useAppContext } from './App.context'
 import { useEffect } from 'react'
 import { useViewportScroll } from 'framer-motion'
+import { isScrolledIn, isTop } from './scroll.utils'
 
 export function useColor(
   color: string,
@@ -12,12 +13,7 @@ export function useColor(
 
   useEffect(() => {
     const scrollPos = scrollY.get()
-    if (
-      top !== null &&
-      bottom !== null &&
-      scrollPos >= top - MOBILE_HEADER_HEIGHT &&
-      scrollPos < bottom - MOBILE_HEADER_HEIGHT
-    ) {
+    if (isTop(scrollPos, top, bottom)) {
       setColor(color)
     }
   }, [color, bottom, scrollY, setColor, top])
@@ -26,8 +22,8 @@ export function useColor(
     if (top !== null && bottom !== null) {
       return scrollY.onChange((scrollPos) => {
         if (
-          scrollPos > top - MOBILE_HEADER_HEIGHT / 2 &&
-          scrollPos < bottom - MOBILE_HEADER_HEIGHT / 2
+          isScrolledIn(scrollPos, top, bottom) ||
+          isTop(scrollPos, top, bottom)
         ) {
           setColor(color)
         }
@@ -35,43 +31,3 @@ export function useColor(
     }
   }, [scrollY, top, setColor, color, bottom])
 }
-
-/*
-export function useHeaderColor(
-  _color: string,
-  thresholdOffsetTop: number | null,
-): { color: string; offsetTop: number | null } {
-  const { setColor, color, setHeaderColors, headerColors } = useAppContext()
-  const { scrollY } = useViewportScroll()
-  const [currentOffsetTop, setCurrentOffsetTop] = useState<number | null>(null)
-
-  useEffect(() => {
-    setColor(_color)
-    if (
-      thresholdOffsetTop !== null &&
-      !headerColors.some((h) => h.color === _color)
-    ) {
-      console.log('setting headerColor')
-      setHeaderColors([
-        ...headerColors.filter((h) => h.color !== _color),
-        { color: _color, boundary: thresholdOffsetTop },
-      ])
-    }
-  }, [_color, headerColors, setColor, setHeaderColors, thresholdOffsetTop])
-
-  useEffect(() => {
-    if (thresholdOffsetTop !== null) {
-      return scrollY.onChange((v) => {
-        if (v >= thresholdOffsetTop) {
-          setColor(_color)
-          setCurrentOffsetTop(thresholdOffsetTop - v)
-        } else {
-          setCurrentOffsetTop(null)
-        }
-      })
-    }
-  }, [scrollY, thresholdOffsetTop, color])
-
-  return { color, offsetTop: currentOffsetTop }
-}
-*/

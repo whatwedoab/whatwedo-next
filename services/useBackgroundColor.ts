@@ -1,6 +1,7 @@
-import { MOBILE_HEADER_HEIGHT, useAppContext } from './App.context'
+import { useAppContext } from './App.context'
 import { useEffect } from 'react'
 import { useViewportScroll } from 'framer-motion'
+import { isScrolledIn, isTop } from './scroll.utils'
 
 export function useBackgroundColor(
   color: string,
@@ -12,12 +13,7 @@ export function useBackgroundColor(
 
   useEffect(() => {
     const scrollPos = scrollY.get()
-    if (
-      top !== null &&
-      bottom !== null &&
-      scrollPos >= top - MOBILE_HEADER_HEIGHT &&
-      scrollPos < bottom - MOBILE_HEADER_HEIGHT
-    ) {
+    if (isTop(scrollPos, top, bottom)) {
       document.body.style.backgroundColor = color
       setBackgroundColor(color)
     }
@@ -27,8 +23,8 @@ export function useBackgroundColor(
     if (top !== null && bottom !== null) {
       return scrollY.onChange((scrollPos) => {
         if (
-          scrollPos > top - MOBILE_HEADER_HEIGHT / 2 &&
-          scrollPos < bottom - MOBILE_HEADER_HEIGHT / 2
+          isTop(scrollPos, top, bottom) ||
+          isScrolledIn(scrollPos, top, bottom)
         ) {
           document.body.style.backgroundColor = color
           setBackgroundColor(color)

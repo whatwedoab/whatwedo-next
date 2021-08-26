@@ -1,0 +1,94 @@
+@import '../../../styles/font';
+@import '../../../styles/color';
+
+.article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: $fragvistBeige;
+}
+
+.logoContainer {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.piecesContainer {
+  position: absolute;
+  width: 100%;
+  height: 50vh;
+  opacity: 1;
+  z-index: 0;
+
+  @mixin piece() {
+    position: absolute;
+    top: -100px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .pieceYellow {
+    @include piece();
+    left: 40vw;
+    animation: spinCounterClockwiseAndRise 120s -10s infinite;
+  }
+
+  .piecePink {
+    @include piece();
+    right: 10vw;
+    animation: spinCounterClockwiseAndFall 120s infinite;
+  }
+  .pieceGreen {
+    @include piece();
+    left: 40px;
+    animation: spinClockwiseAndFall 30s infinite;
+  }
+  .pieceBlue {
+    @include piece();
+    right: 20vw;
+    animation: pulseAndFall 45s -5s infinite;
+  }
+
+  @keyframes pulseAndFall {
+    0% {
+      transform: translateY(0) rotateX(0);
+    }
+    100% {
+      transform: translateY(calc(50vh + 100px)) rotateX(360deg);
+    }
+  }
+
+  @keyframes spinCounterClockwiseAndFall {
+    0% {
+      transform: translateY(0) rotateZ(0);
+    }
+    100% {
+      transform: translateY(calc(50vh + 100px)) rotate(-360deg);
+    }
+  }
+
+  @keyframes spinCounterClockwiseAndRise {
+    0% {
+      transform: translateY(calc(50vh + 100px)) rotateZ(0);
+    }
+    100% {
+      transform: translateY(0) rotate(-360deg);
+    }
+  }
+
+  @keyframes spinClockwiseAndFall {
+    0% {
+      transform: translateY(0) rotateZ(0);
+    }
+    100% {
+      transform: translateY(calc(50vh + 100px)) rotate(360deg);
+    }
+  }
+}

@@ -16,7 +16,7 @@ export function Header() {
         className={s.logoContainer}
         animate={{ fill: color, y: logoVisible ? 0 : -100 }}
         initial={{ y: -100 }}
-        transition={{ duration: 1, ease: 'anticipate' }}
+        transition={{ ease: 'anticipate' }}
       >
         <Link href="/" passHref={true}>
           <div>

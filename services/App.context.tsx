@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { IntersectionOptions } from 'react-intersection-observer'
 
+export const DESKTOP_HEADER_HEIGHT = 100
 export const MOBILE_HEADER_HEIGHT = 60
 export const PAGE_IN_VIEW_OPTIONS: IntersectionOptions = { threshold: 0.05 }
 export const DEFAULT_KEYWORDS = [

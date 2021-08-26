@@ -12,6 +12,9 @@ import { useScrollIn } from '../services/useScrollIn'
 import { Tags } from '../components/Tags/Tags'
 import { Image } from '../components/Image/Image'
 import AppWindowNext from '@streamlinehq/streamlinehq/img/streamline-regular/programing-apps-websites/apps-window/app-window-next.svg'
+import CulinaryCanvasPreview from './CulinaryCanvas/CulinaryCanvasPreview/CulinaryCanvasPreview'
+import FragvistPreview from './Fragvist/FragvistPreview/FragvistPreview'
+import AlgominPreview from './Algomin/AlgominPreview/AlgominPreview'
 
 export default function Portfolio() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
@@ -33,115 +36,168 @@ export default function Portfolio() {
   return (
     <article ref={setRefs} className={s.article}>
       <h1>Portfolio</h1>
-      <PortfolioItem
-        name="Culinary Canvas"
-        tags={[
-          'logo',
-          'branding',
-          'web design',
-          'web development',
-          'Custom CMS',
-          'React',
-          'Firebase',
-        ]}
-        imageSrc="/assets/culinary-canvas-magazine.jpg"
-        href="/culinary-canvas"
-      />
-      <PortfolioItem
-        name="Algomin"
-        tags={['web design']}
-        imageSrc="/assets/algomin/algomin-devices.jpg"
-        href="/algomin"
-      />
-      <PortfolioItem
-        name="Frågvist"
-        tags={['logo', 'visual identity']}
-        imageSrc="/assets/fragvist/fragvist-logomark-gradient.svg"
-        href="/fragvist"
-      />
+      <section className={s.section}>
+        <PortfolioItem
+          name="Culinary Canvas"
+          tags={[
+            'logo',
+            'branding',
+            'web design',
+            'web development',
+            'Custom CMS',
+            'React',
+            'Firebase',
+          ]}
+          pageRenderer={() => <CulinaryCanvasPreview />}
+          imageSrc="/assets/culinary-canvas-magazine.jpg"
+          href="/culinary-canvas"
+        />
+        <PortfolioItem
+          name="Algomin"
+          tags={['web design']}
+          pageRenderer={() => <AlgominPreview />}
+          imageSrc="/assets/algomin/algomin-devices.jpg"
+          href="/algomin"
+        />
+        <PortfolioItem
+          name="Frågvist"
+          tags={['logo', 'visual identity']}
+          pageRenderer={() => <FragvistPreview />}
+          imageSrc="/assets/fragvist/fragvist-logomark-gradient.svg"
+          href="/fragvist"
+        />
+      </section>
 
-      <h2>More</h2>
+      <section className={s.moreContainer}>
+        <ul>
+          <li>
+            <h2>More references</h2>
+          </li>
+          <li>
+            <h3>
+              Lavendo — lavendo.se
+              <a href="https://www.lavendo.se" target="_blank" rel="noreferrer">
+                <Image
+                  src={AppWindowNext}
+                  alt="Lavendo web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </a>
+            </h3>
+            <Tags tags={['web design', 'wordpress']} />
+          </li>
 
-      <PortfolioItem
-        small
-        name="Lavendo"
-        href="https://www.lavendo.se"
-        tags={['web design', 'wordpress']}
-        imageSrc="/assets/portfolio-lavendo.jpg"
-      />
-
-      <PortfolioItem
-        small
-        name="Strukturator"
-        href="https://www.strukturator.se"
-        tags={['web design', 'wordpress', 'elementor', 'logo']}
-        imageSrc="/assets/portfolio-strukturator.jpg"
-      />
-
-      <PortfolioItem
-        small
-        name="Calou"
-        href="https://www.strukturator.se"
-        tags={[
-          'Email marketing',
-          'Automation',
-          'Email design',
-          'Klaviyo',
-          'Shopify',
-        ]}
-        imageSrc="/assets/portfolio-calou.jpg"
-      />
-
-      <ul>
-        <li>
-          <h4>
-            Abalon Relevate
-            <a href="https://www.abalon.se" target="_blank" rel="noreferrer">
-              <Image
-                src={AppWindowNext}
-                alt="Abalon web site"
-                width={20}
-                height={20}
-                objectPosition="bottom center"
-              />
-            </a>
-          </h4>
-          <Tags
-            tags={[
-              'enterprise web application',
-              'Management',
-              'UI design',
-              're-branding',
-              'angularjs',
-              'java',
-              'mssql',
-              'CRM',
-              'DM automation',
-            ]}
-          />
-        </li>
-        <li>
-          <h4>
-            GMP 365™
+          <li>
             <a
-              href="https://www.gmp-systems.com"
+              href="https://www.strukturator.se"
               target="_blank"
               rel="noreferrer"
             >
-              <Image
-                src={AppWindowNext}
-                alt="Gmp Systems web site"
-                width={20}
-                height={20}
-                objectPosition="bottom center"
-              />
+              <h3>
+                Strukturator — strukturator.se
+                <Image
+                  src={AppWindowNext}
+                  alt="Strukturator web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </h3>
             </a>
-          </h4>
-          <Tags
-            tags={['enterprise web application', 'angular', 'java', 'mongoDb']}
-          />
-        </li>
-      </ul>
+            <Tags
+              tags={[
+                'web design',
+                'visual identity',
+                'report design',
+                'wordpress',
+                'elementor',
+              ]}
+            />
+          </li>
+
+          <li>
+            <h3>
+              Calou
+              <a href="https://www.calou.se" target="_blank" rel="noreferrer">
+                <Image
+                  src={AppWindowNext}
+                  alt="Calou web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </a>
+            </h3>
+            <Tags
+              tags={[
+                'Email marketing',
+                'Automation',
+                'Email design',
+                'Klaviyo',
+                'Shopify',
+              ]}
+            />
+          </li>
+
+          <li>
+            <h3>
+              Abalon Relevate
+              <a href="https://www.abalon.se" target="_blank" rel="noreferrer">
+                <Image
+                  src={AppWindowNext}
+                  alt="Abalon web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </a>
+            </h3>
+            <Tags
+              tags={[
+                'enterprise web application',
+                'Management',
+                'UI design',
+                're-branding',
+                'angularjs',
+                'java',
+                'mssql',
+                'CRM',
+                'DM automation',
+                'Full time employment',
+              ]}
+            />
+          </li>
+          <li>
+            <h3>
+              GMP 365™
+              <a
+                href="https://www.gmp-systems.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  src={AppWindowNext}
+                  alt="Gmp Systems web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </a>
+            </h3>
+            <Tags
+              tags={[
+                'enterprise web application',
+                'angular',
+                'java',
+                'mongoDb',
+                'Full time employment',
+              ]}
+            />
+          </li>
+        </ul>
+      </section>
     </article>
   )
 }

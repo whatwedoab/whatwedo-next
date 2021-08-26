@@ -15,9 +15,12 @@
   }
 
   @media (min-width: $lMin) {
-    h1,
-    h2 {
-      margin: 0 0 1rem;
+    h1 {
+      margin-bottom: 1rem;
+    }
+    > h2 {
+      @include h1();
+      margin: 4rem 0 1rem;
     }
   }
 
@@ -26,8 +29,8 @@
   }
 
   @media (max-width: $sMax) {
-    padding-right: 2rem;
-    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 }
 

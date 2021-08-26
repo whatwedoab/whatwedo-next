@@ -2,8 +2,11 @@ $lHeaderHeight: 100px;
 $sHeaderHeight: 60px;
 $sMax: 840px;
 $lMin: 841px;
+$lMax: 1280px;
+$xlMin: 1281px;
 $sContentWidth: 100vw;
 $lContentWidth: 900px;
+$xlContentWidth: 1200px;
 
 @mixin headerHeight() {
   @media (max-width: $lMin) {
@@ -12,6 +15,34 @@ $lContentWidth: 900px;
 
   @media (min-width: $lMin) {
     height: $lHeaderHeight;
+  }
+}
+
+@mixin contentWidth() {
+  @media (max-width: $sMax) {
+    width: $sContentWidth;
+  }
+
+  @media (min-width: $lMin) and (max-width: $lMax) {
+    width: $lContentWidth;
+  }
+
+  @media (min-width: $xlMin) {
+    width: $xlContentWidth;
+  }
+}
+
+@mixin contentHeight($factor) {
+  @media (max-width: $sMax) {
+    height: $sContentWidth * $factor;
+  }
+
+  @media (min-width: $lMin) and (max-width: $lMax) {
+    height: $lContentWidth * $factor;
+  }
+
+  @media (min-width: $xlMin) {
+    height: $xlContentWidth * $factor;
   }
 }
 
@@ -24,7 +55,7 @@ $lContentWidth: 900px;
 @mixin mainLayout() {
   margin: 0;
   @media (min-width: $lMin) {
-    padding-top: $lHeaderHeight;
+    //padding-top: $lHeaderHeight;
   }
 
   @media (max-width: $sMax) {
@@ -32,17 +63,69 @@ $lContentWidth: 900px;
   }
 }
 
+$sPageHorizontalPadding: calc((100vw - #{$sContentWidth}) / 2);
+$lPageHorizontalPadding: calc((100vw - #{$lContentWidth}) / 2);
+$xlPageHorizontalPadding: calc((100vw - #{$xlContentWidth}) / 2);
+
+@mixin pageHorizontalPadding() {
+  @media (max-width: $sMax) {
+    padding-right: $sPageHorizontalPadding;
+    padding-left: $sPageHorizontalPadding;
+  }
+
+  @media (min-width: $lMin) and (max-width: $lMax) {
+    padding-right: $lPageHorizontalPadding;
+    padding-left: $lPageHorizontalPadding;
+  }
+
+  @media (min-width: $xlMin) {
+    padding-right: $xlPageHorizontalPadding;
+    padding-left: $xlPageHorizontalPadding;
+  }
+}
+
+@mixin pageHorizontalMargin() {
+  @media (max-width: $sMax) {
+    margin-right: $sPageHorizontalPadding;
+    margin-left: $sPageHorizontalPadding;
+  }
+
+  @media (min-width: $lMin) and (max-width: $lMax) {
+    margin-right: $lPageHorizontalPadding;
+    margin-left: $lPageHorizontalPadding;
+  }
+
+  @media (min-width: $xlMin) {
+    margin-right: $xlPageHorizontalPadding;
+    margin-left: $xlPageHorizontalPadding;
+  }
+}
+
 @mixin articleLayout() {
   width: 100vw;
+  min-height: 100vh;
   margin: 0;
+  @include pageHorizontalPadding();
 
-  @media (min-width: $lMin) {
-    min-height: calc(100vh - #{$lHeaderHeight});
-    padding: 2rem calc((100vw - #{$lContentWidth}) / 2);
+  > h1 {
+    text-align: center;
   }
 
   @media (max-width: $sMax) {
-    min-height: calc(100vh - #{$sHeaderHeight});
-    padding: 1rem calc((100vw - #{$sContentWidth}) / 2);
+    //min-height: calc(100vh - #{$sHeaderHeight});
+    padding-top: 1rem;
+    padding-bottom: 5vh;
+  }
+
+  @media (min-width: $lMin) and (max-width: $lMax) {
+    //min-height: calc(100vh - #{$lHeaderHeight});
+    padding-top: 2rem;
+    padding-bottom: 5vh;
+  }
+
+  @media (min-width: $xlMin) {
+    //min-height: calc(100vh - #{$lHeaderHeight});
+    padding-top: 2rem;
+    padding-bottom: 10vh;
   }
 }

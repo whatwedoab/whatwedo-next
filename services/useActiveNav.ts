@@ -1,38 +1,31 @@
-import { MOBILE_HEADER_HEIGHT, useAppContext } from './App.context'
+import { useAppContext } from './App.context'
 import { useEffect } from 'react'
 import { useViewportScroll } from 'framer-motion'
+import { isScrolledIn, isTop } from './scroll.utils'
 
-export function useActiveNav(value?: string, top?: number | null, bottom?: number | null) {
+export function useActiveNav(
+  value?: string,
+  top?: number | null,
+  bottom?: number | null,
+) {
   const { setActiveNav, activeNav } = useAppContext()
 
   const { scrollY } = useViewportScroll()
 
   useEffect(() => {
-    const threshold = scrollY.get() + MOBILE_HEADER_HEIGHT / 2
-    if (
-      !!value &&
-      top !== null &&
-      top !== undefined &&
-      bottom !== null &&
-      bottom !== undefined &&
-      threshold >= top &&
-      threshold < bottom
-    ) {
+    const scrollPos = scrollY.get()
+    if (!!value && isTop(scrollPos, top, bottom)) {
       setActiveNav(value)
     }
   }, [value, top, bottom, scrollY, setActiveNav])
 
   useEffect(() => {
-    if (
-      !!value &&
-      top !== null &&
-      top !== undefined &&
-      bottom !== null &&
-      bottom !== undefined
-    ) {
-      return scrollY.onChange((v) => {
-        const threshold = v + MOBILE_HEADER_HEIGHT / 2
-        if (threshold > top && threshold < bottom) {
+    if (!!value) {
+      return scrollY.onChange((scrollPos) => {
+        if (
+          isScrolledIn(scrollPos, top, bottom) ||
+          isTop(scrollPos, top, bottom)
+        ) {
           setActiveNav(value)
         }
       })
