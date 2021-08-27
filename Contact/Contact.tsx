@@ -4,6 +4,7 @@ import SocialInstagram from '@streamlinehq/streamlinehq/img/streamline-bold/logo
 import SocialMediaFacebook from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-facebook.svg'
 import DeveloperCommunityGithub1 from '@streamlinehq/streamlinehq/img/streamline-bold/logos/developer-communities/developer-community-github-1.svg'
 import ProfessionalNetworkLinkedin from '@streamlinehq/streamlinehq/img/streamline-bold/logos/professional-networks/professional-network-linkedin.svg'
+import DesignerCommunityDribbble from '@streamlinehq/streamlinehq/img/streamline-bold/logos/designers-communities/designer-community-dribbble.svg'
 import { Image } from '../components/Image/Image'
 import { useInView } from 'react-intersection-observer'
 import { useScrollIn } from '../services/useScrollIn'
@@ -89,7 +90,7 @@ export function Contact() {
 
             <li>
               <a
-                href="https://www.linkedin.com/whatwedoab/"
+                href="https://www.linkedin.com/company/what-we-do-ab"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -106,7 +107,7 @@ export function Contact() {
 
             <li>
               <a
-                href="https://www.facebook.com/whatwedoab/"
+                href="https://github.com/whatwedoab"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -120,6 +121,23 @@ export function Contact() {
                 Github
               </a>
             </li>
+
+            <li>
+              <a
+                href="https://dribbble.com/mikaeledgren"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image
+                  alt="Dribbble"
+                  src={DesignerCommunityDribbble}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  containerClassName={s.icon}
+                />
+                Dribbble
+              </a>
+            </li>
           </ul>
         </section>
       </div>
@@ -131,13 +149,6 @@ export function Contact() {
             <Image
               alt="Twitter"
               src={SocialMediaTwitter}
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-              containerClassName={s.icon}
-            />
-            <Image
-              alt="Dribbble"
-              src={DesignerCommunityDribbble}
               width={ICON_SIZE}
               height={ICON_SIZE}
               containerClassName={s.icon}
