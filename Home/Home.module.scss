@@ -19,7 +19,7 @@
 
   @media (min-width: $lMin) {
     display: grid;
-    grid-template-columns: 1.2fr 1.8fr;
+    grid-template-columns: 2fr 2fr;
     height: calc(100vh - #{$lHeaderHeight});
     padding-bottom: 0;
   }
@@ -28,6 +28,9 @@
     flex-direction: column;
     min-height: calc(100vh - #{$sHeaderHeight});
     padding-bottom: 0;
+  }
+
+  @media (min-width: $xlMin){
   }
 
   h1 {
