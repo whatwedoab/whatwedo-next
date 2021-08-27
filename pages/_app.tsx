@@ -10,7 +10,7 @@ import { COLOR } from '../styles/COLOR'
 import Head from 'next/head'
 import TagManager from 'react-gtm-module'
 
-export const IS_PROD = process.env.VERCEL_ENV === 'production'
+export const IS_PROD = process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -18,6 +18,20 @@ function MyApp({ Component, pageProps }: AppProps) {
       TagManager.initialize({ gtmId: 'GTM-TZD8RDB' })
     }
   }, [])
+
+  useEffect(
+    () =>
+      void setTimeout(
+        () =>
+          console.log(
+            process.env.VERCEL_ENV,
+            process.env.NEXT_PUBLIC_VERCEL_ENV,
+            process.env.NEXT_PUBLIC_ENVIRONMENT,
+          ),
+        2000,
+      ),
+    [],
+  )
 
   const router = useRouter()
   const appContext = useAppContextInit({
