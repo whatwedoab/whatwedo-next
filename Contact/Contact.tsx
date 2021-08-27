@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from 'react'
 import s from './Contact.module.scss'
 import SocialInstagram from '@streamlinehq/streamlinehq/img/streamline-bold/logos/photos-images/social-instagram.svg'
 import SocialMediaFacebook from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-facebook.svg'
+import SocialMediaTwitter from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-twitter.svg'
 import DeveloperCommunityGithub1 from '@streamlinehq/streamlinehq/img/streamline-bold/logos/developer-communities/developer-community-github-1.svg'
 import ProfessionalNetworkLinkedin from '@streamlinehq/streamlinehq/img/streamline-bold/logos/professional-networks/professional-network-linkedin.svg'
 import DesignerCommunityDribbble from '@streamlinehq/streamlinehq/img/streamline-bold/logos/designers-communities/designer-community-dribbble.svg'
@@ -138,6 +139,23 @@ export function Contact() {
                 Dribbble
               </a>
             </li>
+
+            <li>
+              <a
+                href="https://twitter.com/EdgrenMikael"
+                target="_blank"
+                rel="noreferrer"
+              >
+            <Image
+              alt="Twitter"
+              src={SocialMediaTwitter}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              containerClassName={s.icon}
+            />
+                Twitter
+              </a>
+            </li>
           </ul>
         </section>
       </div>
@@ -146,13 +164,6 @@ export function Contact() {
       <section>
         <ul className={s.row}>
           <li>
-            <Image
-              alt="Twitter"
-              src={SocialMediaTwitter}
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-              containerClassName={s.icon}
-            />
           </li>
         </ul>
       </section>
