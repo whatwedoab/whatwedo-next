@@ -55,7 +55,9 @@ export function Home() {
           transition={{ ease: 'anticipate' }}
           className={s.h1}
         >
-          Hi. I&apos;m a developer and designer. Available for hire.
+          Hi.
+          <br /> We are me. I&apos;m a developer and designer. Available for
+          hire.
         </motion.h1>
 
         <motion.section
@@ -67,11 +69,11 @@ export function Home() {
           <ImageCarousel
             srcs={[
               '/assets/wwd-logo-red.png',
-              '/assets/culinary-canvas-magazine.jpg',
-              '/assets/algomin/algomin-imac.jpg',
+              '/assets/culinary-canvas/culinary-canvas-spreads-1.png',
+              '/assets/algomin/algomin-multidevices-mockup-1.png',
               '/assets/mikael3.jpg',
               '/assets/mikael2.jpg',
-              '/assets/culinary-canvas-computers.jpg',
+              '/assets/fragvist/fragvist-stationary-2.png',
             ]}
           />
         </motion.section>

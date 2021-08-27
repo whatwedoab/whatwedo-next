@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>What we do — freelance developer and designer</title>
+        <title>What we do — developer and designer</title>
         <meta name="keywords" content={[...DEFAULT_KEYWORDS].join(', ')} />
         <meta
           name="description"
