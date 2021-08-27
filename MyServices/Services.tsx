@@ -40,6 +40,12 @@ export function Services() {
       <h1>Services</h1>
       <section>
         <p>
+          I know how difficult it can be to find a designer or developer that
+          fits within your budget. That&apos;s why I&apos;ve put together some
+          packages including my default prices — to make it easier for you to
+          make a decision.
+        </p>
+        <p>
           Please feel free to <Link href="/contact">contact</Link> me if you
           want to hear more about how I can help your business.
         </p>
