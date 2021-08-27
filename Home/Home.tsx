@@ -55,7 +55,7 @@ export function Home() {
           transition={{ ease: 'anticipate' }}
           className={s.h1}
         >
-          I&apos;m a digital designer. And a developer.
+          I&apos;m a designer. And a developer.
           <br />
           <br /> Available for hire.
         </motion.h1>
