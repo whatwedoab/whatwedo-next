@@ -1,3 +1,4 @@
+@import '../../styles/image';
 @import '../../styles/font';
 @import '../../styles/color';
 @import '../../styles/layout';
@@ -37,11 +38,11 @@
   animation: longSlideDown 1s forwards;
 }
 
-@keyframes longSlideDown{
-  0%{
+@keyframes longSlideDown {
+  0% {
     transform: translateY(-100%);
   }
-  100%{
+  100% {
     transform: translateY(0%);
   }
 }
@@ -51,20 +52,20 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  animation: reveal 2s 750ms forwards;
   opacity: 0;
   transform: translateY(-25px);
+  animation: reveal 2s 750ms forwards;
 
-  @media (min-width: $lMin){
+  @media (min-width: $lMin) {
     width: 50vw;
   }
-  @media (max-width: $sMax){
+  @media (max-width: $sMax) {
     width: 90vw;
   }
   .logoContainer {
     position: relative;
     width: 100%;
-    height: 80vh;
+    height: 75vh;
   }
   .tagsContainer {
     justify-content: center;
@@ -108,37 +109,10 @@
   }
 }
 
-@mixin imageContainer() {
-  position: relative;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .mockup1Container {
-  @include imageContainer();
-  @include contentWidth();
-  @include contentHeight(0.562727746);
+  @include mockup1Container();
 }
 
 .mockup2Container {
-  @include imageContainer();
-  display: flex;
-  @media (min-width: $lMin) {
-    width: calc(100vw - 2rem);
-    height: calc(100vw * 0.35);
-  }
-
-  @media (max-width: $sMax) {
-    flex-direction: column;
-    width: 100vw;
-    height: calc(100vw * 2);
-  }
-
-  div {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0.5rem;
-    overflow: hidden;
-  }
+  @include mockup2Container();
 }

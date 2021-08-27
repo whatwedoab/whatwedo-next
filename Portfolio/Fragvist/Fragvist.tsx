@@ -1,18 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import s from './Fragvist.module.scss'
-import { useWindowSize } from '../../services/useWindowSize'
-import { ImageMosaic } from '../../components/ImageMosaic/ImageMosaic'
 import { Tags } from '../../components/Tags/Tags'
-import { ParallaxImages } from '../../components/ParallaxImages/ParallaxImages'
-import { motion, Variants } from 'framer-motion'
 import { Image } from '../../components/Image/Image'
-import { useInView } from 'react-intersection-observer'
 import { useBackgroundColor } from '../../services/useBackgroundColor'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
-import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
 import { useOffsets } from '../../services/useOffsets'
+import useIsMobile from '../../services/useIsMobile'
 
 const parallaxImages = [
   {
@@ -38,27 +33,12 @@ const mosaicHrefs = Array.from(new Array(6)).map(
 )
 
 export default function Fragvist() {
-  const { height } = useWindowSize()
-  const [logoLoaded, setLogoLoaded] = useState<boolean>(false)
-  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
-  const ref = useRef<HTMLElement>()
-
-  const setRefs = useCallback(
-    (node: HTMLElement) => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef],
-  )
+  const ref = useRef<HTMLElement>(null)
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.FRAGVIST.BEIGE, top, bottom)
-  useColor(COLOR.BLACK, top, bottom)
+  useBackgroundColor('fragvist', COLOR.FRAGVIST.BEIGE, top, bottom)
+  useColor('fragvist', COLOR.BLACK, top, bottom)
   useActiveNav('/portfolio', top, bottom)
-
-  const logoVariants: Variants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0 },
-  }
+  const isMobile = useIsMobile()
 
   return (
     <>
@@ -96,46 +76,124 @@ export default function Fragvist() {
           />
         </div>
       </div>
-      <article className={s.article} ref={setRefs}>
-        <motion.section
-          className={s.logoContainer}
-          initial="hidden"
-          animate={logoLoaded ? 'visible' : 'hidden'}
-          transition={{ type: 'tween', duration: 2, ease: 'anticipate' }}
-          variants={logoVariants}
-        >
+      <article className={s.article} ref={ref}>
+        <section className={s.nameContainer}>
           <Image
             alt="Frågvist logo"
             objectFit="contain"
             layout="fill"
             src="/assets/fragvist/fragvist-logo.svg"
             priority
-            containerClassName={s.imageWrapper}
-            onLoadingComplete={() => setLogoLoaded(true)}
+            containerClassName={s.logoContainer}
           />
           <Tags
+            containerClassName={s.tagsContainer}
             delay={1.5}
             tags={['logo', 'branding', 'web design', 'web development', 'CMS']}
           />
-        </motion.section>
+        </section>
 
-        <section className={s.contentContainer}>
+        <section className={s.textContainer}>
           <p>
             Frågvist is a Swedish company that produces and arranges quizzes,
             puzzles, games and events.
           </p>
+        </section>
+
+        <section className={s.mockup1Container}>
+          <Image
+            src={'/assets/fragvist/fragvist-identity.png'}
+            alt="Frågvist visual identity"
+            layout="fill"
+            objectFit={'contain'}
+          />
+        </section>
+
+        <section className={s.textContainer}>
           <p>
-            I was asked to create a visual brand identity that works when
-            speaking to potential clients as well as quiz participants.
+            I was tasked with creating a visual brand identity that works both
+            when speaking to companies — potential clients — as well as ordinary
+            people — the quiz participants.
           </p>
         </section>
 
-        <section className={s.parallaxContainer}>
-          {!!height && <ParallaxImages images={parallaxImages} />}
+        <section className={s.mockup2Container}>
+          <Image
+            src={'/assets/fragvist/fragvist-stationary-2.png'}
+            alt="Frågvist stationary"
+            layout="fill"
+            objectFit="cover"
+          />
+          <Image
+            src={'/assets/fragvist/fragvist-stationary-1.png'}
+            alt="Frågvist stationary"
+            layout="fill"
+            objectFit="cover"
+          />
         </section>
 
-        <section className={s.mosaicContainer}>
-          <ImageMosaic hrefs={mosaicHrefs} columns={3} />
+        <section className={s.textContainer}>
+          <p>
+            It needs to come across as professional and trustworthy, while at
+            the same time playful and joyous. The typeface has that duality.
+            It&apos; a slab serif with a roundness and just that right amount of
+            quirkiness to play in both divisions.
+          </p>
+        </section>
+
+        {!isMobile && (
+          <>
+            <section className={s.mockup1Container}>
+              <Image
+                src={'/assets/fragvist/fragvist-pins.png'}
+                alt="Frågvist pins"
+                layout="fill"
+                objectFit="cover"
+              />
+            </section>
+            <section className={s.mockup1Container}>
+              <Image
+                src={'/assets/fragvist/fragvist-debossed.png'}
+                alt="Frågvist mark debossed on paper"
+                layout="fill"
+                objectFit="cover"
+              />
+            </section>
+          </>
+        )}
+        {isMobile && (
+          <section className={s.mockup2Container}>
+            <Image
+              src={'/assets/fragvist/fragvist-pins.png'}
+              alt="Frågvist pins"
+              layout="fill"
+              objectFit="cover"
+            />
+            <Image
+              src={'/assets/fragvist/fragvist-debossed.png'}
+              alt="Frågvist mark debossed on paper"
+              layout="fill"
+              objectFit="cover"
+            />
+          </section>
+        )}
+        <section className={s.textContainer}>
+          <p>
+            The logomark is a flirt with the 90&apos;s, a reminder of the analog
+            days. While quizzes and games like the ones Frågvist arrange become
+            more and more digital, they&apos;re still at their best on site, in
+            person. We want people to be reminded of that when they see
+            Frågvist.
+          </p>
+        </section>
+
+        <section className={s.mockup1Container}>
+          <Image
+            src={'/assets/fragvist/fragvist-tshirts.png'}
+            alt="Frågvist t-shirts"
+            layout="fill"
+            objectFit="cover"
+          />
         </section>
       </article>
     </>

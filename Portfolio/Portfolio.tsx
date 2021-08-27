@@ -16,6 +16,7 @@ import CulinaryCanvasPreview from './CulinaryCanvas/CulinaryCanvasPreview/Culina
 import FragvistPreview from './Fragvist/FragvistPreview/FragvistPreview'
 import AlgominPreview from './Algomin/AlgominPreview/AlgominPreview'
 
+const HREF = '/portfolio'
 export default function Portfolio() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
   const ref = useRef<HTMLElement>()
@@ -28,9 +29,9 @@ export default function Portfolio() {
     [inViewRef],
   )
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.WHITE, top, bottom)
-  useColor(COLOR.BLACK, top, bottom)
-  useActiveNav('/portfolio', top, bottom)
+  useBackgroundColor(HREF, COLOR.WHITE, top, bottom)
+  useColor(HREF, COLOR.BLACK, top, bottom)
+  useActiveNav(HREF, top, bottom)
   useScrollIn(inView, entry)
 
   return (
@@ -49,21 +50,18 @@ export default function Portfolio() {
             'Firebase',
           ]}
           pageRenderer={() => <CulinaryCanvasPreview />}
-          imageSrc="/assets/culinary-canvas-magazine.jpg"
           href="/culinary-canvas"
         />
         <PortfolioItem
           name="Algomin"
           tags={['web design']}
           pageRenderer={() => <AlgominPreview />}
-          imageSrc="/assets/algomin/algomin-devices.jpg"
           href="/algomin"
         />
         <PortfolioItem
           name="Frågvist"
           tags={['logo', 'visual identity']}
           pageRenderer={() => <FragvistPreview />}
-          imageSrc="/assets/fragvist/fragvist-logomark-gradient.svg"
           href="/fragvist"
         />
       </section>
@@ -75,7 +73,7 @@ export default function Portfolio() {
           </li>
           <li>
             <h3>
-              Lavendo — lavendo.se
+              Lavendo
               <a href="https://www.lavendo.se" target="_blank" rel="noreferrer">
                 <Image
                   src={AppWindowNext}
@@ -96,7 +94,7 @@ export default function Portfolio() {
               rel="noreferrer"
             >
               <h3>
-                Strukturator — strukturator.se
+                Strukturator
                 <Image
                   src={AppWindowNext}
                   alt="Strukturator web site"
@@ -143,6 +141,22 @@ export default function Portfolio() {
 
           <li>
             <h3>
+              Trime
+              <a href="https://www.trime.app" target="_blank" rel="noreferrer">
+                <Image
+                  src={AppWindowNext}
+                  alt="Trime web site"
+                  width={20}
+                  height={20}
+                  objectPosition="bottom center"
+                />
+              </a>
+            </h3>
+            <Tags tags={['mobile app', 'react native', 'firebase']} />
+          </li>
+
+          <li>
+            <h3>
               Abalon Relevate
               <a href="https://www.abalon.se" target="_blank" rel="noreferrer">
                 <Image
@@ -169,6 +183,7 @@ export default function Portfolio() {
               ]}
             />
           </li>
+
           <li>
             <h3>
               GMP 365™

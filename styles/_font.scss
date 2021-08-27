@@ -27,7 +27,8 @@ $biko: biko, sans-serif;
   font-family: $formaDisplay;
   font-size: 5rem;
   font-weight: 700;
-
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   @media (max-width: $sMax) {
     text-align: center;
     font-size: 4rem;
@@ -38,7 +39,8 @@ $biko: biko, sans-serif;
   font-family: $formaDisplay;
   font-size: 3.5rem;
   font-weight: 600;
-
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
   @media all and (max-width: 840px) {
     font-size: 3rem;
   }

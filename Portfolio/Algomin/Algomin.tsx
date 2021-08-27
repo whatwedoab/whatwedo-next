@@ -1,14 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import s from './Algomin.module.scss'
 import { Tags } from '../../components/Tags/Tags'
 import { useViewportScroll } from 'framer-motion'
 import { Image } from '../../components/Image/Image'
 import { useBackgroundColor } from '../../services/useBackgroundColor'
-import { useInView } from 'react-intersection-observer'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
-import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
 import { useOffsets } from '../../services/useOffsets'
 
 const parallaxImages = [
@@ -27,20 +25,10 @@ const mosaicHrefs = Array.from(new Array(6)).map(
 )
 
 export default function Algomin() {
-  const [mockupLoaded, setMockupLoaded] = useState<boolean>(false)
-  const [inViewRef, inView] = useInView(PAGE_IN_VIEW_OPTIONS)
-  const ref = useRef<HTMLDivElement>()
-
-  const setRefs = useCallback(
-    (node: HTMLDivElement) => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef],
-  )
+  const ref = useRef<HTMLDivElement>(null)
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.WHITE, top, bottom)
-  useColor(COLOR.ALGOMIN.BLUE, top, bottom)
+  useBackgroundColor('/algomin', COLOR.WHITE, top, bottom)
+  useColor('/algomin',COLOR.ALGOMIN.BLUE, top, bottom)
   useActiveNav('/portfolio', top, bottom)
   const { scrollYProgress } = useViewportScroll()
 
@@ -48,7 +36,7 @@ export default function Algomin() {
 
   return (
     <>
-      <div ref={setRefs} className={s.backgroundMockup}>
+      <div ref={ref} className={s.backgroundMockup}>
         <Image
           alt="Algomin phone"
           objectFit="cover"
@@ -56,7 +44,6 @@ export default function Algomin() {
           src="/assets/algomin/algomin-phone-mockup-1.png"
           priority
           quality={100}
-          onLoadingComplete={() => setMockupLoaded(true)}
         />
         <div className={s.overlay} />
       </div>

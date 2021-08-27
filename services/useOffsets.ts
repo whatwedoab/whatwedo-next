@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useState } from 'react'
 
 export function useOffsets<T extends HTMLElement>(
-  ref: MutableRefObject<T | undefined>,
+  ref: MutableRefObject<T | undefined | null>,
 ): { top: number | null; bottom: number | null } {
   const [top, setTop] = useState<number | null>(null)
   const [bottom, setBottom] = useState<number | null>(null)

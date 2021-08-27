@@ -1,15 +1,12 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import s from './CulinaryCanvas.module.scss'
-import { useWindowSize } from '../../services/useWindowSize'
 import { Tags } from '../../components/Tags/Tags'
 import { motion, Variants } from 'framer-motion'
 import { Image } from '../../components/Image/Image'
-import { useInView } from 'react-intersection-observer'
 import { useBackgroundColor } from '../../services/useBackgroundColor'
 import { useColor } from '../../services/useColor'
 import { useActiveNav } from '../../services/useActiveNav'
 import { COLOR } from '../../styles/COLOR'
-import { PAGE_IN_VIEW_OPTIONS } from '../../services/App.context'
 import { useOffsets } from '../../services/useOffsets'
 import Link from 'next/link'
 
@@ -29,21 +26,15 @@ const mosaicHrefs = Array.from(new Array(12)).map(
 )
 
 export default function CulinaryCanvas() {
-  const { height } = useWindowSize()
-  const [logoLoaded, setLogoLoaded] = useState<boolean>(false)
-  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
-  const ref = useRef<HTMLElement>()
-
-  const setRefs = useCallback(
-    (node: HTMLElement) => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef],
-  )
+  const ref = useRef<HTMLElement>(null)
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.CULINARY_CANVAS.PINK_LIGHT, top, bottom)
-  useColor(COLOR.BLACK, top, bottom)
+  useBackgroundColor(
+    '/culinary-canvas',
+    COLOR.CULINARY_CANVAS.PINK_LIGHT,
+    top,
+    bottom,
+  )
+  useColor('/culinary-canvas', COLOR.BLACK, top, bottom)
   useActiveNav('/portfolio', top, bottom)
 
   const logoVariants: Variants = {
@@ -52,7 +43,7 @@ export default function CulinaryCanvas() {
   }
 
   return (
-    <article className={s.article} ref={setRefs}>
+    <article className={s.article} ref={ref}>
       <motion.div
         layoutId="triangle"
         className={s.triangle}
@@ -68,7 +59,6 @@ export default function CulinaryCanvas() {
           src="/assets/culinary-canvas/culinary-canvas-logo.svg"
           priority
           containerClassName={s.logoContainer}
-          onLoadingComplete={() => setLogoLoaded(true)}
         />
         <Tags
           delay={1.5}

@@ -13,15 +13,18 @@
 
 .article {
   @include articleLayout();
-  display: flex;
+
   background-color: $blueLight;
   color: $black;
 
   @media (min-width: $lMin) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     height: calc(100vh - #{$lHeaderHeight});
     padding-bottom: 0;
   }
   @media (max-width: $sMax) {
+    display: flex;
     flex-direction: column;
     min-height: calc(100vh - #{$sHeaderHeight});
   }
@@ -42,8 +45,8 @@
 
     > div {
       position: relative;
-      width: calc(#{$lContentWidth} / 2);
-      height: calc(#{$lContentWidth} / 2);
+      width: calc((#{$lContentWidth} / 3) * 2);
+      height: calc((#{$lContentWidth} / 3) * 2);
     }
   }
 }

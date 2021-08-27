@@ -1,6 +1,4 @@
-import React, { useCallback, useRef } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
+import React, { useRef } from 'react'
 import { useActiveNav } from '../services/useActiveNav'
 import s from './About.module.scss'
 import { Image } from '../components/Image/Image'
@@ -10,24 +8,18 @@ import { useColor } from '../services/useColor'
 import { COLOR } from '../styles/COLOR'
 import { useBackgroundColor } from '../services/useBackgroundColor'
 
-export function About() {
-  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
-  const ref = useRef<HTMLElement>()
+const HREF = '/about'
 
-  const setRefs = useCallback(
-    (node: HTMLElement) => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef],
-  )
+export function About() {
+  const ref = useRef<HTMLElement>(null)
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.CORAL, top, bottom)
-  useColor(COLOR.YELLOW_LIGHT, top, bottom)
-  useActiveNav('/about', top, bottom)
+  useBackgroundColor(HREF, COLOR.CORAL, top, bottom)
+  useColor(HREF, COLOR.YELLOW_LIGHT, top, bottom)
+  useActiveNav(HREF, top, bottom)
+
 
   return (
-    <article className={s.container} ref={setRefs}>
+    <article className={s.container} ref={ref}>
       <h1>About</h1>
       <section className={s.gridContainer}>
         <p>

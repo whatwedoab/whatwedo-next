@@ -14,6 +14,8 @@ import { useShowNav } from '../services/useShowNav'
 import { useOffsets } from '../services/useOffsets'
 import { useBackgroundColor } from '../services/useBackgroundColor'
 
+const HREF = '/'
+
 export function Home() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
   const ref = useRef<HTMLElement>()
@@ -26,9 +28,9 @@ export function Home() {
     [inViewRef],
   )
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.BLUE_LIGHT, top, bottom)
-  useColor(COLOR.BLACK, top, bottom)
-  useActiveNav('/', top, bottom)
+  useBackgroundColor(HREF, COLOR.BLUE_LIGHT, top, bottom)
+  useColor(HREF, COLOR.BLACK, top, bottom)
+  useActiveNav(HREF, top, bottom)
   useScrollIn(inView, entry)
 
   const { showLogo } = useShowLogo(false)

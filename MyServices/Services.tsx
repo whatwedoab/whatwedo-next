@@ -1,31 +1,23 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useRef } from 'react'
 import s from './Services.module.scss'
-import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useColor } from '../services/useColor'
 import { useActiveNav } from '../services/useActiveNav'
-import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
 import { COLOR } from '../styles/COLOR'
 import { useBackgroundColor } from '../services/useBackgroundColor'
 import { useOffsets } from '../services/useOffsets'
 import { Service } from './Service/Service'
 
-export function Services() {
-  const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
-  const ref = useRef<HTMLElement>()
+const HREF = '/services'
 
-  const setRefs = useCallback(
-    (node: HTMLElement) => {
-      ref.current = node
-      inViewRef(node)
-    },
-    [inViewRef],
-  )
+export function Services() {
+  const ref = useRef<HTMLElement>(null)
+
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.GREY_LIGHTEST, top, bottom)
-  useColor(COLOR.BLUE, top, bottom)
-  useActiveNav('/services', top, bottom)
+  useBackgroundColor(HREF, COLOR.GREY_LIGHTEST, top, bottom)
+  useColor(HREF, COLOR.BLUE, top, bottom)
+  useActiveNav(HREF, top, bottom)
 
   const articleVariants = {
     hidden: { opacity: 1 },
@@ -42,7 +34,7 @@ export function Services() {
       variants={articleVariants}
       initial="hidden"
       animate="visible"
-      ref={setRefs}
+      ref={ref}
       className={s.article}
     >
       <h1>Services</h1>

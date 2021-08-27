@@ -17,6 +17,8 @@ import { useOffsets } from '../services/useOffsets'
 
 const ICON_SIZE = 32
 
+const HREF = '/contact'
+
 export function Contact() {
   const [inViewRef, inView, entry] = useInView(PAGE_IN_VIEW_OPTIONS)
   const ref = useRef<HTMLElement>()
@@ -29,9 +31,9 @@ export function Contact() {
     [inViewRef],
   )
   const { top, bottom } = useOffsets(ref)
-  useBackgroundColor(COLOR.WHITE, top, bottom)
-  useColor(COLOR.BLACK, top, bottom)
-  useActiveNav('/contact', top, bottom)
+  useBackgroundColor(HREF, COLOR.WHITE, top, bottom)
+  useColor(HREF, COLOR.BLACK, top, bottom)
+  useActiveNav(HREF, top, bottom)
   useScrollIn(inView, entry)
 
   return (

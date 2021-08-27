@@ -1,3 +1,4 @@
+@import '../../styles/image';
 @import '../../styles/color';
 @import '../../styles/layout';
 
@@ -41,39 +42,12 @@
   }
 }
 
-@mixin imageContainer() {
-  position: relative;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .mockup1Container {
-  @include imageContainer();
-  @include contentWidth();
-  @include contentHeight(0.562727746);
-}
+   @include mockup1Container();
+ }
 
 .mockup2Container {
-  @include imageContainer();
-  display: flex;
-  @media (min-width: $lMin) {
-    width: calc(100vw - 2rem);
-    height: calc(100vw * 0.35);
-  }
-
-  @media (max-width: $sMax) {
-    flex-direction: column;
-    width: 100vw;
-    height: calc(100vw * 2);
-  }
-
-  div {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0.5rem;
-    overflow: hidden;
-  }
+  @include mockup2Container();
 }
 
 .backgroundMockup {
