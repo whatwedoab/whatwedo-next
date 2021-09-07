@@ -109,7 +109,7 @@ export function Services() {
               'Data visualisation',
               '+ more',
             ]}
-            price="$90-$120/hour"
+            price="from $75/hour"
             mailtoSubject="Freelancing inquiry"
           />
         </motion.div>
