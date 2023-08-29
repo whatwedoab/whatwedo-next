@@ -18,8 +18,6 @@ export function Service(props: Props) {
         <span>{name}</span>
       </h2>
 
-      <span className={s.price}>{price}</span>
-
       <MailtoButton subject={mailtoSubject} className={s.mailtoButton} />
 
       <ul>

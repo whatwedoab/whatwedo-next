@@ -1,13 +1,13 @@
-import React, { useRef } from 'react'
-import s from './Services.module.scss'
+import {motion} from 'framer-motion'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useColor } from '../services/useColor'
-import { useActiveNav } from '../services/useActiveNav'
-import { COLOR } from '../styles/COLOR'
-import { useBackgroundColor } from '../services/useBackgroundColor'
-import { useOffsets } from '../services/useOffsets'
-import { Service } from './Service/Service'
+import React, {useRef} from 'react'
+import {useActiveNav} from '../services/useActiveNav'
+import {useBackgroundColor} from '../services/useBackgroundColor'
+import {useColor} from '../services/useColor'
+import {useOffsets} from '../services/useOffsets'
+import {COLOR} from '../styles/COLOR'
+import {Service} from './Service/Service'
+import s from './Services.module.scss'
 
 const HREF = '/services'
 
@@ -41,9 +41,8 @@ export function Services() {
       <section>
         <p>
           I know how difficult it can be to find a designer or developer that
-          fits within your budget. That&apos;s why I&apos;ve put together some
-          packages including my default prices — to make it easier for you to
-          make a decision.
+          fits within your budget. I&apos;m flexible and can work with you to find a
+          solution that works for both of us.
         </p>
         <p>
           Please feel free to <Link href="/contact">contact</Link> me if you
@@ -98,9 +97,9 @@ export function Services() {
               'Javascript',
               'Angular',
               'React',
-              'Java',
+              'NextJS',
               'NodeJS',
-              'MongoDb',
+              'Firebase',
               'Marketing assets',
               'UI',
               'Web design',
@@ -116,7 +115,6 @@ export function Services() {
       </section>
       <h2>More</h2>
       <p>
-        These services vary in size depending on your needs.{' '}
         <Link href="/contact">Contact me</Link> to get a quote.
       </p>
       <ul>
