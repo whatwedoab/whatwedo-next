@@ -1,21 +1,27 @@
-import React, { useCallback, useRef } from 'react'
-import s from './Contact.module.scss'
-import SocialInstagram from '@streamlinehq/streamlinehq/img/streamline-bold/logos/photos-images/social-instagram.svg'
-import SocialMediaFacebook from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-facebook.svg'
-import SocialMediaTwitter from '@streamlinehq/streamlinehq/img/streamline-bold/logos/social-medias/social-media-twitter.svg'
-import DeveloperCommunityGithub1 from '@streamlinehq/streamlinehq/img/streamline-bold/logos/developer-communities/developer-community-github-1.svg'
-import ProfessionalNetworkLinkedin from '@streamlinehq/streamlinehq/img/streamline-bold/logos/professional-networks/professional-network-linkedin.svg'
-import DesignerCommunityDribbble from '@streamlinehq/streamlinehq/img/streamline-bold/logos/designers-communities/designer-community-dribbble.svg'
-import { Image } from '../components/Image/Image'
-import { useInView } from 'react-intersection-observer'
-import { useScrollIn } from '../services/useScrollIn'
-import { useColor } from '../services/useColor'
-import { useActiveNav } from '../services/useActiveNav'
-import { PAGE_IN_VIEW_OPTIONS } from '../services/App.context'
-import { COLOR } from '../styles/COLOR'
+import DesignerCommunityDribbble
+  from '../public/assets/icons/dribbble.svg'
+import DeveloperCommunityGithub1
+  from '../public/assets/icons/github-2.svg'
+import ProfessionalNetworkLinkedin
+  from '../public/assets/icons/linkedin.svg'
+import SocialMediaFacebook
+  from '../public/assets/icons/facebook-1.svg'
+import SocialMediaTwitter
+  from '../public/assets/icons/x-logo-twitter.svg'
 import Link from 'next/link'
-import { useBackgroundColor } from '../services/useBackgroundColor'
-import { useOffsets } from '../services/useOffsets'
+import React, {useCallback, useRef} from 'react'
+import {useInView} from 'react-intersection-observer'
+import {Image} from '../components/Image/Image'
+import SocialInstagram from '../public/assets/icons/instagram-2.svg'
+import {PAGE_IN_VIEW_OPTIONS} from '../services/App.context'
+import {useActiveNav} from '../services/useActiveNav'
+import {useBackgroundColor} from '../services/useBackgroundColor'
+import {useColor} from '../services/useColor'
+import {useOffsets} from '../services/useOffsets'
+import {useScrollIn} from '../services/useScrollIn'
+import {COLOR} from '../styles/COLOR'
+import s from './Contact.module.scss'
+import NextImage from 'next/image'
 
 const ICON_SIZE = 32
 
@@ -147,13 +153,13 @@ export function Contact() {
                 rel="noreferrer"
               >
             <Image
-              alt="Twitter"
+              alt="X (Twitter)"
               src={SocialMediaTwitter}
               width={ICON_SIZE}
               height={ICON_SIZE}
               containerClassName={s.icon}
             />
-                Twitter
+                X (Twitter)
               </a>
             </li>
           </ul>
