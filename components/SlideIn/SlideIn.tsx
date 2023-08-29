@@ -1,7 +1,6 @@
+import {motion} from 'framer-motion'
 import React from 'react'
-import { motion } from 'framer-motion'
 import s from './SlideIn.module.scss'
-import { AnimationOptions } from 'framer-motion/types/animation/animate'
 
 interface Props {
   children: any
@@ -9,7 +8,7 @@ interface Props {
   height: string
   delay?: number
   start?: boolean
-  transition?: AnimationOptions<string>
+  transition?: any
 }
 
 export function SlideIn(props: Props) {
